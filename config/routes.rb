@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :positions
   resources :user_accounts
   resources :financial_products
   resources :users
