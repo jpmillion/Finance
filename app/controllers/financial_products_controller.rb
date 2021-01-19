@@ -1,0 +1,2 @@
+class FinancialProductsController < ApplicationController
+end
