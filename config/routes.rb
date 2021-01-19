@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :watch_lists
   resources :transactions
   resources :positions
   resources :user_accounts
