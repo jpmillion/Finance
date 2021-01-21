@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/login', to: 'sessions#login'
   resources :stocks
   resources :watch_lists
   resources :transactions
