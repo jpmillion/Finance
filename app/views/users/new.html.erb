@@ -1,3 +1,18 @@
 <h1>new</h1>
 
-<%= render partial: 'form', locals: { user: @user } %>
+<%= form_with model: @user do |f| %>
+
+    <%= render partial: 'form', locals: { f: f}%>
+
+    <%= f.label 'Check if you are an Administrator' %> <br>
+    <%= f.check_box :admin %> <br>
+
+    <%= f.label :password %> <br>
+    <%= f.text_field :password %> <br>
+
+    <%= f.label 'Confirm Password' %> <br>
+    <%= f.text_field :password_confirmation %> <br>
+
+    <%= f.submit %>
+    
+<% end %>
