@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <header>
+      <%= link_to 'Log Out', session_path(session[:user_id]), action: :destroy %>
+    </header>
     <%= yield %>
   </body>
 </html>

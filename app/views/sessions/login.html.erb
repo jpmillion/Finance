@@ -1,11 +1,12 @@
 <h1>Sessions#login</h1>
 <p>Find me in app/views/sessions/login.html.erb</p>
 
-<%= form_with model: @user do |f| %>
+<%= form_with model: @user, url: sessions_path do |f| %>
 
     <%= f.label :username %> <br>
     <%= f.text_field :username %> <br>
-
-    <%= render partial: '/users/password_form', locals: { f: f } %>
+    <%= f.label :password %> <br>
+    <%= f.text_field :password %> <br>
+    <%= f.submit 'Log In' %>
 
 <% end %>
