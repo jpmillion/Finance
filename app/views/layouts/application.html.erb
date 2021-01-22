@@ -10,7 +10,7 @@
 
   <body>
     <header>
-      <%= link_to 'Log Out', session_path(session[:user_id]), action: :destroy %>
+      <%= button_to('Log Out', logout_path, method: :delete) %>
     </header>
     <%= yield %>
   </body>

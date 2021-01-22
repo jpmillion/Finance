@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/login', to: 'sessions#login'
-  resources :sessions, only: [:create, :destroy]
+  delete '/logout', to: 'sessions#logout'
+  resources :sessions, only: [:create]
   resources :stocks
   resources :watch_lists
   resources :transactions
