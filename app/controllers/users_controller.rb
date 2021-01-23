@@ -17,15 +17,19 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = current_user
+        
     end
 
     def edit
-        @user = current_user
+        
     end
 
     def update
-        
+        if current_user.update(user_params)
+            redirect_to user_path(current_user), alert: "Successfully Updated Profile"
+        else
+            render :edit
+        end
     end
 
     def destroy
