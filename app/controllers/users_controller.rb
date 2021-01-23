@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+    skip_before_action :login_required, only: [:new, :create]
+
     def new
         @user = User.new
     end
@@ -13,14 +16,22 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = current_user #User.find_by(id: params[:id])
+    end
+
+    def edit
+        @user = current_user #User.find_by(id: params[:id])
+    end
+
+    def update
+        
+    end
+
     def destroy
         session.delete :user_id
         User.find_by(id: params[:id]).destroy
         redirect_to root_path, alert: "Account Successfully Terminated"
-    end
-
-    def show
-        @user = User.find_by(id: params[:id])
     end
 
     private
