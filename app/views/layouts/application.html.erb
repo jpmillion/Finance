@@ -10,8 +10,9 @@
 
   <body>
     <header>
-      <%= button_to('Log Out', logout_path, method: :delete) %>
+      <%= button_to('Log Out', logout_path, method: :delete) %> <%= link_to 'Sign In with GitHub', '/auth/github/callback'%>
     </header>
+
     <%= yield %>
   </body>
 </html>

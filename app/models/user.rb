@@ -5,5 +5,5 @@ class User < ApplicationRecord
     has_many :watch_lists
     has_many :stocks
 
-    validates :first_name, :last_name, :username, :email, :password_digest, presence: true
+    validates :first_name, :last_name, :username, :email, presence: true
 end
