@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_224947) do
+ActiveRecord::Schema.define(version: 2021_01_23_094130) do
 
   create_table "financial_products", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_224947) do
 
   create_table "user_accounts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "finacial_product_id"
+    t.integer "financial_product_id"
     t.float "balance"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
