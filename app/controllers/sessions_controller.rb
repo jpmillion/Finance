@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
       #render :'users/show'
     else
-      render :login
+      redirect_to login_path, alert: "Invalid username or password"
     end
   end
 
