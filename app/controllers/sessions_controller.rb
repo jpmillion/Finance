@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), alert: "Successfully Logged In"
       #render :'users/show'
     else
       redirect_to login_path, alert: "Invalid username or password"
