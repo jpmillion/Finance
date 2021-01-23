@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
     end
   end
 
-  def logout
-    session.delete :user_id
+  def destroy
+    session.clear
     redirect_to login_path, alert: "Successfully Logged Out"
   end
 end

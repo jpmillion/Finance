@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   root 'sessions#login'
   get '/login', to: 'sessions#login'
-  delete '/logout', to: 'sessions#logout'
   get '/auth/:provider/callback', to: 'sessions#create'
   post '/auth/:provider/callback', to: 'sessions#create'
-  resources :sessions, only: [:create]
+  resources :sessions, only: [:create, :destroy]
   resources :stocks
   resources :watch_lists
   resources :transactions

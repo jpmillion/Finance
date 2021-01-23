@@ -10,13 +10,5 @@
 
 <h1>Registration Form</h1>
 
-<%= form_with model: @user do |f| %>
 
-    <%= render partial: 'form', locals: { f: f }%>
-
-    <%= f.label 'Check if you are an Administrator' %> <br>
-    <%= f.check_box :admin %> <br>
-
-    <%= render partial: 'password_form', locals: { f: f } %>
-
-<% end %>
+<%= render partial: 'form', locals: { user: @user }%>

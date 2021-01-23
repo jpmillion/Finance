@@ -10,7 +10,7 @@
 
   <body>
     <header>
-      <%= button_to('Log Out', logout_path, method: :delete) %> <%= link_to 'Sign In with GitHub', '/auth/github/callback'%>
+      <%= button_to('Log Out', session_path(current_user), method: :delete) if session[:user_id] %> <%= link_to 'Sign In with GitHub', '/auth/github/callback'%>
     </header>
      <% flash.each do |name, msg| %>
        <%= content_tag :div, msg, class: name %>
