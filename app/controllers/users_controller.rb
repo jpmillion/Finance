@@ -7,10 +7,15 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user)
+            redirect_to user_path(@user), alert: "Successfull Registration"
         else
             render :new
         end
+    end
+
+    def destroy
+        User.find_by(id: params[:id]).destroy
+        redirect_to root_path, alert: "Account Successfully Terminated"
     end
 
     def show

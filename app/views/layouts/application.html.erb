@@ -12,9 +12,9 @@
     <header>
       <%= button_to('Log Out', logout_path, method: :delete) %> <%= link_to 'Sign In with GitHub', '/auth/github/callback'%>
     </header>
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+     <% flash.each do |name, msg| %>
+       <%= content_tag :div, msg, class: name %>
+     <% end %>
 
     <%= yield %>
   </body>
