@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
     def login_required
         if !logged_in?
             redirect_to login_path, alert: "**Login Required!!"
+        elsif params[:id].to_i != session[:user_id]
+            redirect_to user_path(session[:user_id]), alert: "Access Denied"
         end
     end
 end
