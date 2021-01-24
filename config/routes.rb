@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: [:create, :destroy]
   resources :transactions
-  resources :positions
+  resources :user_accounts, only: [:show] do
+    resources :positions
+  end
   resources :financial_products
   resources :users do
     resources :user_accounts

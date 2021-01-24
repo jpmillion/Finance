@@ -11,6 +11,10 @@ class UserAccountsController < ApplicationController
         redirect_to user_path(current_user)
     end
 
+    def show
+        @user_account = UserAccount.find_by(id: params[:id])
+    end
+
 
     private
 
