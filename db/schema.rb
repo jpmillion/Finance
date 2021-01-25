@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_115959) do
+ActiveRecord::Schema.define(version: 2021_01_25_121745) do
 
   create_table "financial_products", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_115959) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "value"
     t.string "symbol"
+    t.string "type"
   end
 
   create_table "user_accounts", force: :cascade do |t|
