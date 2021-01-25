@@ -1,8 +1,10 @@
-<%= @user.full_name %>
+<%= @user.full_name %> <br>
+
+<p>Your Accounts</p><br>
 
 <% @user.user_accounts.each do |acct| %>
 
-    <%= link_to acct.financial_product.name, acct %>
+    <%= link_to acct.financial_product.name, acct %> <br>
 
 <% end %>
 <br><br>
