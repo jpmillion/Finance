@@ -7,13 +7,12 @@ class UserAccountsController < ApplicationController
     end
 
     def create
-        binding.pry
-        fin_product = FinancialProduct.find_by(params[:user_account][:financial_product_id])
+        fin_product = FinancialProduct.find_by(id: params[:user_account][:financial_product_id])
         if current_user.financial_products.include?(fin_product)
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
             @user_account = UserAccount.create(user_account_params)
-            redirect_to customer_path(current_user)
+            redirect_to customer_user_account_path(current_user, @user_account)
         end
     end
 

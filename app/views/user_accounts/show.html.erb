@@ -1,7 +1,8 @@
 <h1>User Account show page</h1>
 
 
-<%= @user_account.financial_product.name %> <br><br>
+acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.name %> <br>
+
 
 <% @user_account.positions.each do |position| %>
 
