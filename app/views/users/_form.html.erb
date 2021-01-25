@@ -15,7 +15,7 @@
     <%= f.text_field :email %> <br>
 
     <%= f.label 'Check if you are an Administrator' %> <br>
-    <%= f.check_box :admin %> <br>
+    <%= f.select :type, ['customer', 'admin'] %> <br>
 
     <%= f.label :password %> <br>
     <%= f.password_field :password %> <br>
