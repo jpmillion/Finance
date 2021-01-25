@@ -1,0 +1,2 @@
+class Equity < Position
+end

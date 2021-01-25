@@ -1,0 +1,2 @@
+class Cash < Position
+end
