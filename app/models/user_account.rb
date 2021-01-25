@@ -9,4 +9,7 @@ class UserAccount < ApplicationRecord
         self.positions.where(symbol: symbol.upcase) == [] ? false : true
     end
 
+    def cash_position_exist?
+        !!user_account.positions.where(type: 'Cash')
+    end
 end
