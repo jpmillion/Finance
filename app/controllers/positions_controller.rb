@@ -9,7 +9,7 @@ class PositionsController < ApplicationController
         @user_account = UserAccount.find_by(id: params[:position][:user_account_id])
         if params[:position][:symbol] != '' && @user_account.position_exists?(params[:position][:symbol])
             redirect_to new_user_account_position_path(@user_account), alert: "You already have a position in #{params[:position][:symbol]}"
-        elsif @user_account.cash_position_exist?
+        elsif params[:position][:type] == 'Cash' && @user_account.cash_position_exist?
             redirect_to new_user_account_position_path(@user_account), alert: "Only 1 cash position per account"
             # position_hash = stock_quote(params[:position][:symbol], params[:position][:shares])
         else
