@@ -1,0 +1,9 @@
+<h1>new user account</h1>
+
+<%= form_with model: [current_user, @user_account] do |f| %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.collection_select :financial_product_id, @products, :id, :name %>
+    <%= f.submit %>
+
+<% end %>

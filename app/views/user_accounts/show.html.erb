@@ -1,0 +1,14 @@
+<h1>User Account show page</h1>
+
+
+<%= @user_account.financial_product.name %> <br><br>
+
+<% @user_account.positions.each do |position| %>
+
+    <%= position.symbol %>
+    <%= position.name %> <br>
+    <%= position.value %> <br>
+
+<% end %>
+
+<%= link_to 'create new position', new_user_account_position_path(@user_account) %>

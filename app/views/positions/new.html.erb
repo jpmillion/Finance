@@ -1,0 +1,24 @@
+<% if @position.errors.any? %>
+    <%= tag.div id: "error_explanation" do %>
+            <% @position.errors.full_messages.each do |message| %>
+                <%= tag.li message %>
+            <% end %>
+        <% end %>
+<% end %>
+
+<h1>new position</h1>
+
+<%= form_with model: [@user_account, @position] do |f| %>
+
+    <%= f.hidden_field :user_account_id %>
+    <%= f.label :symbol %>
+    <%= f.text_field :symbol %> <br>
+    <%= f.label :shares %>
+    <%= f.text_field :shares %> <br>
+    <%= f.submit %> <br>
+    
+
+<% end %>
+<br>
+
+<%= link_to 'Back to Account', user_account_path(@user_account) %>

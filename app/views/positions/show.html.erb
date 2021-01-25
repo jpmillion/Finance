@@ -1,0 +1,11 @@
+<h1>Position</h1>
+
+
+<%= @position.symbol %> <br>
+<%= @position.shares %> <br>
+<%= @position.name %> <br>
+<%= @position.value %> <br>
+<%= @position.created_at %> <br>
+<%= @position.updated_at %> <br>
+
+<%= link_to 'Back to Account', user_account_path(@position.user_account) %>

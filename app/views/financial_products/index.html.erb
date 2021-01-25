@@ -1,0 +1,11 @@
+<p><%= link_to 'Register', new_user_path %></p>
+
+<h1>Financial Products</h1>
+
+
+<% @products.each do |product| %>
+    <div>    
+        <%= product.name %> <br>
+        <%= product.description %>
+    </div> <br><br>
+<% end %>
