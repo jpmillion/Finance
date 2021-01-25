@@ -6,7 +6,7 @@ class UserAccount < ApplicationRecord
     
         
     def position_exists?(symbol)
-        !!self.positions.where("symbol = ?", symbol)
+        self.positions.where(symbol: symbol.upcase) == [] ? false : true
     end
 
 end
