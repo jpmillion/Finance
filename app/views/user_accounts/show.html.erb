@@ -12,4 +12,5 @@ acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.n
 
 <% end %>
 
-<%= link_to 'create new position', new_user_account_position_path(@user_account) %>
+<%= link_to 'create new position', new_user_account_position_path(@user_account) %> <br>
+<%= button_to 'close account', user_account_path(@user_account), method: :delete %>

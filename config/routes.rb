@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :user_accounts
   end
 
-  resources :user_accounts, only: [:show] do
+  resources :user_accounts, only: [:show, :destroy] do
     resources :positions
   end
 
