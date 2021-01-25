@@ -10,6 +10,6 @@ class UserAccount < ApplicationRecord
     end
 
     def cash_position_exist?
-        !!user_account.positions.where(type: 'Cash')
+        !!self.positions.where(type: 'Cash')
     end
 end
