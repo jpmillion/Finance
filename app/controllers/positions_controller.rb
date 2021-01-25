@@ -5,9 +5,9 @@ class PositionsController < ApplicationController
     end
 
     def create
-        #binding.pry
-        @user_account = UserAccount.find_by(params[:position][:user_account_id])
-        if @user_account.position_exists?(params[:position][:symbol])
+        binding.pry
+        @user_account = UserAccount.find_by(id: params[:position][:user_account_id])
+        if params[:position][:symbol] != '' && @user_account.position_exists?(params[:position][:symbol])
             redirect_to new_user_account_position_path(@user_account), alert: "You already have a position in #{params[:position][:symbol]}"
         else 
             # position_hash = stock_quote(params[:position][:symbol], params[:position][:shares])
@@ -27,6 +27,6 @@ class PositionsController < ApplicationController
 
 
     def position_params
-        params.require(:position).permit(:symbol, :shares, :user_account_id)
+        params.require(:position).permit(:symbol, :shares, :user_account_id, :type, :value)
     end
 end

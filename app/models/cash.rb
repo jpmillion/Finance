@@ -1,3 +1,3 @@
 class Cash < Position
-    validates :value, numericaly: { greater_than_or_equal_to: 0 }
+    validates :value, numericality: { greater_than_or_equal_to: 0 }
 end
