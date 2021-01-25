@@ -3,7 +3,8 @@
 <%= form_with model: [@user, @user_account] do |f| %>
 
     <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.collection_select :financial_product_id, @products, :id, :name %>
+    <%= f.collection_select :financial_product_id, @products, :id, :name %> <br>
+    
     <%= f.submit %>
 
 <% end %>

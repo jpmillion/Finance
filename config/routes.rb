@@ -9,9 +9,11 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
 
+  resources :users
+
   resources :customers, controller: :users, type: :Customer 
 
-  resources :users do
+  resources :customers, controller: :users, type: :Customer do
     resources :user_accounts
   end
 

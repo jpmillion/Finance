@@ -7,7 +7,6 @@ class UserAccountsController < ApplicationController
     end
 
     def create
-        binding.pry
         @user_account = UserAccount.create(user_account_params)
         redirect_to user_path(current_user)
     end
