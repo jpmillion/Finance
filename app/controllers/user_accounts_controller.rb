@@ -3,6 +3,7 @@ class UserAccountsController < ApplicationController
     def new
         @user = current_user
         @user_account = UserAccount.new
+        @cash = @user_account.build
         @products = FinancialProduct.all
     end
 
