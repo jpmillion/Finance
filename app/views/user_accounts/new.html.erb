@@ -5,8 +5,8 @@
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.collection_select :financial_product_id, @products, :id, :name %> <br>
     <%= f.fields_for :cash do |field| %>
-    <%= field.hidden :type %> <br>
-    <%= field.label :value %> <br>
+     <br>
+    <%= field.label :value, 'Enter your initial deposit' %> <br>
     <%= field.text_field :value %> <br>
     <% end %>
     <%= f.submit %>
