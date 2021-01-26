@@ -30,11 +30,6 @@ class PositionsController < ApplicationController
     def edit
         #binding.pry
         @position = Position.find_by(id: params[:id])
-        if params[:user_account_id].to_i != @position.user_account_id
-            redirect_to user_account_position_path(@position.user_account, @position), alert: "Permission Denied"
-        else
-            render :edit
-        end
     end
 
 
