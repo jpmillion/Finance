@@ -6,7 +6,8 @@ acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.n
 
 <% @user_account.positions.each do |position| %>
 
-    <%= position.symbol %>
+    <%= link_to position.type, user_account_position_path(@user_account, position) if position.type == 'Cash' %> <br>
+    <%= link_to position.symbol, user_account_position_path(@user_account, position) %> <br>
     <%= position.name %> <br>
     <%= position.value %> <br>
 
