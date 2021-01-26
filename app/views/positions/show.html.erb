@@ -1,12 +1,6 @@
 <h1>Position</h1>
 
 
-<%= @position.symbol %> <br>
-<%= @position.shares %> <br>
-<%= @position.name %> <br>
-<%= @position.value %> <br>
-<%= @position.created_at %> <br>
-<%= @position.updated_at %> <br>
+<%= render partial: "equity", locals: { equity: @position } if @position.type == 'Equity' %>
 
-<%= link_to 'Back to Account', user_account_path(@position.user_account) %> <br>
-<%= link_to 'add or reduce position', edit_user_account_position_path(@position.user_account, @position) %>
+<%= render partial: "cash", locals: { cash: @position } if @position.type == 'Cash' %>

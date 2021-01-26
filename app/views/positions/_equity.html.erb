@@ -1,0 +1,9 @@
+<%= equity.symbol %> <br>
+<%= equity.shares %> <br>
+<%= equity.name %> <br>
+<%= equity.value %> <br>
+<%= equity.created_at %> <br>
+<%= equity.updated_at %> <br>
+
+<%= link_to 'Back to Account', user_account_path(equity.user_account) %> <br>
+<%= link_to 'add or reduce position', edit_equity_path(equity) %>

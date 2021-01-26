@@ -7,18 +7,15 @@ Rails.application.routes.draw do
 
   post '/auth/:provider/callback', to: 'sessions#create'
 
-  resources :sessions, only: [:create, :destroy]
-
-  resources :users
-
-  resources :customers, controller: :users, type: :Customer 
+  resources :sessions, only: [:create, :destroy] 
 
   resources :customers, controller: :users, type: :Customer do
-    resources :user_accounts
+    resources :user_accounts, only: [:index, :new, :create]
   end
 
-  resources :user_accounts, only: [:show, :destroy] do
-    resources :positions
+  resources :user_accounts, only: [:show, :destroy], shallow: true do
+    resources :equities, controller: :positions, type: :Equity
+    resources :cash, controller: :positions, type: :Cash
   end
 
   resources :financial_products
