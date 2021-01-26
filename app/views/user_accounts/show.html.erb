@@ -6,12 +6,12 @@ acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.n
 
 <% @user_account.positions.each do |position| %>
 
-    <%= link_to position.type, user_account_position_path(@user_account, position) if position.type == 'Cash' %> <br>
-    <%= link_to position.symbol, user_account_position_path(@user_account, position) %> <br>
+    <%= link_to position.type, cash_path(position) if position.type == 'Cash' %> <br>
+    <%= link_to position.symbol, equity_path(position) %> <br>
     <%= position.name %> <br>
     <%= position.value %> <br>
 
 <% end %>
 
-<%= link_to 'create new position', new_user_account_position_path(@user_account) %> <br>
+<%= link_to 'create new equity position', new_user_account_equity_path(@user_account) %> <br>
 <%= link_to 'close account', user_account_path(@user_account), method: :delete %>

@@ -4,7 +4,7 @@
 
 <% @user.user_accounts.each do |acct| %>
 
-    <%= link_to acct.financial_product.name, customer_user_account_path(@user, acct) %> <br>
+    <%= link_to acct.financial_product.name, user_account_path(acct) %> <br>
 
 <% end %>
 <br><br>

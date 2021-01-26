@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_path(@user), alert: "Successful Registration"
+            redirect_to customer_path(@user), alert: "Successful Registration"
         else
             render action: 'new'
         end
