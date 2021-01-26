@@ -27,6 +27,16 @@ class PositionsController < ApplicationController
         @position = Position.find_by(id: params[:id])
     end
 
+    def edit
+        binding.pry
+        @position = Position.find_by(id: params[:id])
+        if params[:user_account_id] != @position.user_account_id
+            redirect_to user_account_position_path(@position.user_account, @position), alert: "Permission Denied"
+        else
+            render :edit
+        end
+    end
+
 
     def position_params
         params.require(:position).permit(:symbol, :shares, :user_account_id, :type, :value)
