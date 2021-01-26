@@ -30,6 +30,6 @@ class UserAccountsController < ApplicationController
     private
 
     def user_account_params
-        params.require(:user_account).permit(:financial_product_id, :user_id)
+        params.require(:user_account).permit(:financial_product_id, :user_id, :cash_attributes [:value])
     end
 end
