@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/auth/:provider/callback', to: 'sessions#create'
 
   resources :sessions, only: [:create, :destroy] 
-
+  resources :users, only: [:new]
   resources :customers, controller: :users, type: :Customer do
     resources :user_accounts, only: [:index, :new, :create]
   end
