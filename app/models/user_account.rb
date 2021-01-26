@@ -2,7 +2,7 @@ class UserAccount < ApplicationRecord
     belongs_to :user
     belongs_to :financial_product
     has_many :positions
-    accepts_nested_attributes_for :cash
+    accepts_nested_attributes_for :positions
 
     
         
