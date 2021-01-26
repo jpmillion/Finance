@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       redirect_to customer_path(@user), alert: "Successfully Logged In"
-      #render :'users/show'
     else
       redirect_to login_path, alert: "Invalid username or password"
     end
