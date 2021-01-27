@@ -1,8 +1,7 @@
 class UserAccount < ApplicationRecord
     belongs_to :user
-    #belongs_to :customer
     belongs_to :financial_product
-    has_many :positions
+    has_many :positions, dependent: :destroy
     accepts_nested_attributes_for :positions
 
     

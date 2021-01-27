@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     
-    has_many :user_accounts
+    has_many :user_accounts, dependent: :destroy
     has_many :financial_products, through: :user_accounts
     has_many :positions, through: :user_accounts
 

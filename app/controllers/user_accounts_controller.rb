@@ -9,7 +9,7 @@ class UserAccountsController < ApplicationController
     def create
         binding.pry
         fin_product = FinancialProduct.find_by(id: params[:user_account][:financial_product_id])
-        if current_user.financial_products.include?(fin_product)
+        if current_user.financial_products.exists?(fin_product.id)
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
             @user_account = UserAccount.create(user_account_params)
@@ -23,7 +23,7 @@ class UserAccountsController < ApplicationController
 
     def destroy
         @user_account = UserAccount.find_by(id: params[:id])
-        @user_account.destroy
+        @user_account.destroy unless @user_account.nil?
         redirect_to customer_path(current_user), alert: "Account has been closed"
     end
 
