@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy] 
   resources :users, only: [:new, :create]
-  resources :customers, controller: :users, type: :Customer do
+  resources :customers, controller: :users, type: 'Customer' do
     resources :user_accounts, only: [:index, :new, :create]
   end
 

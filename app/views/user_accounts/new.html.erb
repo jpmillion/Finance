@@ -1,14 +1,16 @@
 <h1>new user account</h1>
 
-<%= form_with model: [@user, @user_account] do |f| %>
+<%= form_with model: [current_user, @user_account] do |f| %>
 
-    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.collection_select :financial_product_id, @products, :id, :name %> <br>
-    <%= f.fields_for :cash do |field| %>
-     <br>
-    <%= field.label :value, 'Enter your initial deposit' %> <br>
-    <%= field.text_field :value, value: 0 %> <br>
+
+    <%= f.fields_for :position do |position| %>
+    <%= position.hidden_field :type, value: 'Cash' %><br>
+    <%= position.label :value, 'Enter your initial deposit' %> <br>
+    <%= position.text_field :value, value: 0 %> <br>
     <% end %>
+
     <%= f.submit %>
 
 <% end %>
