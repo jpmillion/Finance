@@ -1,14 +1,5 @@
 <h1>edit</h1>
 
-<% if @position.errors.any? %>
-    <div id="error_explanation">
-        <ul>
-            <% @position.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
 
 <%= form_with model: @position do |f| %>
 
