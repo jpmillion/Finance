@@ -13,4 +13,5 @@
 <br><br>
 <%= link_to 'Open an Account', new_customer_user_account_path(current_user) %> <br>
 <%= link_to 'edit profile', edit_customer_path(current_user) if current_user.type == 'Customer' %> <br>
-<%= link_to 'edit profile', edit_admin_path(current_user) if current_user.type == 'Admin' %>
+<%= link_to 'edit profile', edit_admin_path(current_user) if current_user.type == 'Admin' %> <br>
+<%= button_to 'Delete all accounts and profiles', customer_path(current_user), method: :delete %>
