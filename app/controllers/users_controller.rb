@@ -17,11 +17,9 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = current_user
     end
 
-    def edit
-        
+    def edit 
     end
 
     def update
@@ -37,8 +35,8 @@ class UsersController < ApplicationController
     end
 
     def destroy
+        current_user.destroy
         session.delete :user_id
-        User.find_by(id: params[:id]).destroy
         redirect_to root_path, alert: "Account Successfully Terminated"
     end
 
@@ -46,14 +44,14 @@ class UsersController < ApplicationController
 
     def user_params
         if params[:customer]
-            params.require(:customer)
+            params.require(:customer).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
 
         elsif params[:admin]
-            params.require(:admin)
-            
+            params.require(:admin).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
+
         else
-            params.require(:user)
+            params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
         end
-        params.permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
+        #params.permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
     end
 end
