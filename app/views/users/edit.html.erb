@@ -11,5 +11,5 @@
 <h1>Edit Profile</h1>
 
 <%= form_with model: current_user do |f| %>
-<%= render partial: 'form', locals: { user: current_user }%>
+<%= render partial: 'form', locals: { user: current_user, f: f }%>
 <% end %>

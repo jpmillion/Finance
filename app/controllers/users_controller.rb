@@ -26,7 +26,11 @@ class UsersController < ApplicationController
 
     def update
         if current_user.update(user_params)
-            redirect_to user_path(current_user), alert: "Successfully Updated Profile"
+            if params[:customer]
+                redirect_to customer_path(current_user), alert: "Successfully Updated Profile"
+            else
+                redirect_to admin_path(current_user), alert: "Successfully Updated Profile"
+            end
         else
             render :edit
         end
@@ -41,6 +45,15 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
+        if params[:customer]
+            params.require(:customer)
+
+        elsif params[:admin]
+            params.require(:admin)
+            
+        else
+            params.require(:user)
+        end
+        params.permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
     end
 end
