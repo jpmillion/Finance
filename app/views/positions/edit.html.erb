@@ -1,16 +1,26 @@
 <h1>edit</h1>
 
+<% if @position.errors.any? %>
+    <div id="error_explanation">
+        <ul>
+            <% @position.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
 <%= form_with model: @position do |f| %>
 
     <% if @position.type == 'Cash' %>
         <p>Select type of transaction:</p>
         <%= select_tag(:transaction, options_for_select([["Deposit", "Deposit"], ["Withdrawl", "Withdrawl"]])) %> <br>
-        <%= f.number_field :value, value: 0 %> <br>
+        <%= f.number_field :value, value: 0, step: :any, min: 0 %> <br>
     <% else %>
         <p>Would you like to add to or reduce your position in <%= @position.symbol %> </p>
         <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %>
         <%= f.label :shares %> <br>
-        <%= f.text_field :shares %> <br>
+        <%= f.number_field :shares, min: 0 %> <br>
     <% end %>
 
     <%= f.submit %> <br>
