@@ -34,11 +34,11 @@ class PositionsController < ApplicationController
     end
 
     def update
-        binding.pry
         @position = Position.find_by(id: params[:id])
         redirect_to customer_path(current_user) if @position.nil?
         params[:cash] ? field = params[:cash][:value].to_f : field = params[:equity][:shares].to_i
         flash[:alert] = @position.transaction(params[:transaction], field)
+        @position.save
         redirect_to user_account_path(@position.user_account)
     end
 

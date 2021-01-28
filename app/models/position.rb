@@ -7,29 +7,24 @@ class Position < ApplicationRecord
 
         when "Deposit"
             self.value += value
-            if self.save
-                "Deposited $#{value} in your account"
-            end
+            "Deposited $#{value} in your account"
+
         when "Withdrawl"
             if self.value > value
                 self.value -= value
-                if self.save
-                    "$#{value} withdrawn from your account"
-                end
+                "$#{value} withdrawn from your account"
             else
                 "Withdrawl canceled: Insuffcient funds"
             end
+
         when "Add"
             self.shares += shares
-            if self.save
-                "#{shares} share(s) have been added to your position"
-            end
+            "#{shares} share(s) have been added to your position"
+            
         else
             if self.shares > shares
                 self.shares -= shares
-                if self.save
-                    "You have sold #{shares} share(s)"
-                end
+                "You have sold #{shares} share(s)"
             else
                 "Sell canceled: You cannot sell more than you have (#{self.shares})"
             end
