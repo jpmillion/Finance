@@ -32,6 +32,10 @@ class PositionsController < ApplicationController
         @position = Position.find_by(id: params[:id])
     end
 
+    def update
+        
+    end
+
 
     def position_params
         params.require(:position).permit(:symbol, :shares, :user_account_id, :type, :value)

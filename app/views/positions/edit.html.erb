@@ -1,7 +1,17 @@
 <h1>edit</h1>
 
 <%= form_with model: @position do |f| %>
-    <%= f.label :shares %>
-    <%= f.text_field :shares %> <br>
+
+    <% if @position.type == 'Cash' %>
+        <p>Select type of transaction:</p>
+        <%= select_tag(:transaction, options_for_select([["Deposit", "Deposit"], ["Withdrawl", "Withdrawl"]])) %> <br>
+        <%= f.number_field :value, value: 0 %> <br>
+    <% else %>
+        <p>Would you like to add to or reduce your position in <%= @position.symbol %> </p>
+        <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %>
+        <%= f.label :shares %> <br>
+        <%= f.text_field :shares %> <br>
+    <% end %>
+
     <%= f.submit %> <br>
 <% end %>
