@@ -12,7 +12,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to customer_path(@user), alert: "Successful Registration"
         else
-            render action: 'new'
+            render :new
         end
     end
 
