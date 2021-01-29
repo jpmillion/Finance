@@ -14,7 +14,15 @@ class UserAccount < ApplicationRecord
         !!self.positions.where(type: 'Cash')
     end
 
+    def cash_position
+        positions.first
+    end
+
     def cash_balance
-        self.positions.where(type: 'Cash').pluck(:value).first
+        cash_position.value
+    end
+
+    def make_payment(payment)
+        cash_position.update(value: cash_balance - payment)
     end
 end

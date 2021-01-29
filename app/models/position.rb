@@ -57,8 +57,7 @@ class Position < ApplicationRecord
     def affordable?(symbol, shares)
         balance, total_price = self.user_account.cash_balance, self.total_purchase_price(symbol, shares)
         if balance > total_price 
-            balance -= total_price
-            self.user_account.save
+            self.user_account.make_payment(total_price)
         else
             false
         end   
