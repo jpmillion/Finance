@@ -2,7 +2,7 @@ class Position < ApplicationRecord
     belongs_to :user_account
 
 
-    def transaction(transaction, value=0, shares=0)
+    def transaction(transaction: , cash_amount: 0, shares: 0)
         
         case transaction
 
@@ -19,9 +19,13 @@ class Position < ApplicationRecord
             end
 
         when "Add"
-            self.shares += shares
-            "#{shares} share(s) have been added to your position"
-            
+            if self.affordable?(self.symbol, shares)
+                self.update(shares: self.shares + shares)
+                "#{shares} share(s) have been added to your position"
+            else
+                 "Insufficient Funds"
+            end
+              
         else
             if self.shares > shares
                 self.shares -= shares

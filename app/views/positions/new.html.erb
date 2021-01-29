@@ -14,7 +14,7 @@
     <%= f.label :symbol %>
     <%= f.text_field :symbol %> <br>
     <%= f.label :shares %>
-    <%= f.text_field :shares %> <br>
+    <%= f.number_field :shares, value: 0, min: 0, step: 1 %> <br>
     <%= f.submit %> <br>
     
 

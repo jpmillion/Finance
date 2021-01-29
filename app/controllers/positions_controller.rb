@@ -13,7 +13,7 @@ class PositionsController < ApplicationController
             @equity = @user_account.positions.build(equity_params)
             if @equity.save
                 if @equity.affordable?(symbol, shares)
-                    redirect_to equity_path(@equity), alert: "You purchased #{shares} share(s) of #{symbol} for #{@equity.total_purchase_price(symbol, shares)}"
+                    redirect_to equity_path(@equity), alert: "You purchased #{shares} share(s) of #{symbol} for $#{@equity.total_purchase_price(symbol, shares)}"
                 else
                     @equity.destroy
                     redirect_to new_user_account_equity_path(@user_account), alert: "Insufficient Funds"
@@ -37,9 +37,10 @@ class PositionsController < ApplicationController
     def update
         @position = Position.find_by(id: params[:id])
         redirect_to customer_path(current_user) if @position.nil?
-        params[:cash] ? field = params[:cash][:value].to_f : field = params[:equity][:shares].to_i
-        flash[:alert] = @position.transaction(params[:transaction], field)
-        @position.save
+        params[:cash] ? cash_amount = params[:cash][:value].to_f : shares = params[:equity][:shares].to_i
+        binding.pry
+        flash[:alert] = @position.transaction(transaction: params[:transaction], cash_amount: cash_amount, shares: shares)
+        @position.save if params[:cash]
         redirect_to user_account_path(@position.user_account)
     end
 

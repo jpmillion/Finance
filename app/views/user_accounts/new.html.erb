@@ -18,7 +18,7 @@
     <%= f.fields_for :positions, @cash do |position| %>
     <%= position.hidden_field :type, value: 'Cash' %><br>
     <%= position.label :value, 'Enter your initial deposit' %> <br>
-    <%= position.text_field :value, value: 0 %> <br>
+    <%= position.number_field :value, value: 0, min: 0, step: :any %> <br>
     <% end %>
 
     <%= f.submit %>

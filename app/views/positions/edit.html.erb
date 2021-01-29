@@ -8,10 +8,10 @@
         <%= select_tag(:transaction, options_for_select([["Deposit", "Deposit"], ["Withdrawl", "Withdrawl"]])) %> <br>
         <%= f.number_field :value, value: 0, step: :any, min: 0 %> <br>
     <% else %>
-        <p>Would you like to add to or reduce your position in <%= @position.symbol %> </p>
-        <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %>
-        <%= f.label :shares %> <br>
-        <%= f.number_field :shares, min: 0 %> <br>
+        <p>You currently have <%= @position.shares %> share(s) of <%= @position.symbol %></p>
+        <p>Would you like to add to or reduce your position </p>
+        <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %> <br>
+        <%= f.number_field :shares, value: 0, min: 0 %> <%= f.label :shares %> <br> <br>
     <% end %>
 
     <%= f.submit %> <br>

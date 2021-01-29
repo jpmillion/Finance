@@ -8,7 +8,7 @@ class UserAccountsController < ApplicationController
 
     def create
         fin_product = FinancialProduct.find_by(id: params[:user_account][:financial_product_id])
-        if current_user.financial_products.exists?(fin_product.id)
+        if current_user.financial_products.exists?(id: fin_product.id)
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
             @user_account = UserAccount.create(user_account_params)
