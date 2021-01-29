@@ -1,6 +1,6 @@
-<% if @position.errors.any? %>
+<% if @equity.errors.any? %>
     <%= tag.div id: "error_explanation" do %>
-            <% @position.errors.full_messages.each do |message| %>
+            <% @equity.errors.full_messages.each do |message| %>
                 <%= tag.li message %>
             <% end %>
         <% end %>
@@ -8,16 +8,9 @@
 
 <h1>new position</h1>
 
-<%= form_with model: [@user_account, @position] do |f| %>
+<%= form_with model: [@user_account, @equity] do |f| %>
 
-    <%= f.hidden_field :user_account_id %>
-    <%= f.label :type, 'Select the type of position you would like open' %> <br>
-    <%= f.select :type, ['Cash', 'Equity'] %> <br>
-    <%= f.label :value, 'If you selected cash enter the amount of your initial deposit and click create position' %> <br>
-    <%= f.text_field :value %> <br>
-
-    <p>Or if you selected equity enter the symbol and number of shares you want </p>
-
+    <%= f.hidden_field :type, value: 'Equity' %>
     <%= f.label :symbol %>
     <%= f.text_field :symbol %> <br>
     <%= f.label :shares %>

@@ -13,4 +13,8 @@ class UserAccount < ApplicationRecord
     def cash_position_exist?
         !!self.positions.where(type: 'Cash')
     end
+
+    def cash_balance
+        self.positions.where(type: 'Cash').pluck(:value).first
+    end
 end
