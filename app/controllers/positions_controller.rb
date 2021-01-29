@@ -25,7 +25,6 @@ class PositionsController < ApplicationController
     end
 
     def show
-        binding.pry
         @position = Position.find_by(id: params[:id])
     end
 

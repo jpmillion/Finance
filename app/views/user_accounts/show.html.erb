@@ -1,17 +1,19 @@
 <h1>User Account show page</h1>
 
 
-acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.name %> - <%= @user_account.balance %> <br>
+acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.name %> - <%= @user_account.balance %> <br><br>
+
+<h3>Positions</h3>
 
 <% @user_account.positions.each do |position| %>
 
     <% if position.type == 'Cash' %>
-        <h1>Cash position</h1>
+        <h4>Cash</h4>
         <%= link_to position.type, cash_path(position) %> <br>
-        <%= position.value %> <br>
+        <%= position.value %> - 
         <%= link_to 'make a deposit/withdrawl', edit_cash_path(position) %> <br>
+        <h4>Equities</h4>
     <% else %>
-        <h1>Equity positions</h1>
         <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br>
         <%= position.shares %> <br>
         <%= position.value %> <br>

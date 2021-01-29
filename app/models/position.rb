@@ -1,6 +1,7 @@
 class Position < ApplicationRecord
     belongs_to :user_account
 
+
     def transaction(transaction, value=0, shares=0)
         
         case transaction
