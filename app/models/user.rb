@@ -13,4 +13,8 @@ class User < ApplicationRecord
     def full_name
         (self.first_name + ' ' + self.last_name).titleize
     end
+
+    def net_worth
+        UserAccount.sum_user_account_balances(self)
+    end
 end
