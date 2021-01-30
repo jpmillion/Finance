@@ -1,0 +1,18 @@
+<%= current_user.full_name %> <br>
+
+<p>Your Accounts</p><br>
+
+
+<% current_user.user_accounts.each do |acct| %>
+
+    <%= link_to acct.financial_product.name, user_account_path(acct) %> <br>
+
+<% end %>
+<br><br>
+
+<!-- button_to 'Close All Accounts', current_user, method: :delete -->
+<br><br>
+<%= link_to 'Open an Account', new_customer_user_account_path(current_user) %> <br>
+<%= link_to 'edit profile', edit_customer_path(current_user) if current_user.type == 'Customer' %> <br>
+<%= link_to 'edit profile', edit_admin_path(current_user) if current_user.type == 'Admin' %> <br>
+<%= button_to 'Delete all accounts and profiles', customer_path(current_user), method: :delete %>

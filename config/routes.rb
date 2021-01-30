@@ -11,9 +11,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :customers, controller: :users, type: 'Customer' do
+  resources :customers, controller: :users, only: [:edit, :show, :update, :destroy], type: 'Customer' do
     resources :user_accounts, only: [:index, :new, :create]
   end
+
+  resources :admin, controller: :users, only: [:edit, :show, :update, :destroy]
 
   resources :user_accounts, only: [:show, :destroy] do
     resources :equities, controller: :positions, only: [:new, :create]

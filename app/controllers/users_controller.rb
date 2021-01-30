@@ -10,7 +10,9 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to customer_path(@user), alert: "Successful Registration"
+            flash[:alert] = "Successful Registration"
+            redirect_to customer_path(@user) if @user.type == 'Customer'
+            redirect_to admin_path(@user) if @user.type == 'Admin'
         else
             render :new
         end
@@ -52,6 +54,5 @@ class UsersController < ApplicationController
         else
             params.require(:user).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
         end
-        #params.permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)
     end
 end
