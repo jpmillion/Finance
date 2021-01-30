@@ -25,4 +25,8 @@ class UserAccount < ApplicationRecord
     def make_payment(payment)
         cash_position.update(value: cash_balance - payment)
     end
+
+    def get_paid(payment)
+        cash_position.update(value: cash_balance + payment)
+    end
 end

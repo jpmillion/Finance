@@ -28,7 +28,8 @@ class Position < ApplicationRecord
               
         else
             if self.shares > shares
-                self.shares -= shares
+                self.update(shares: self.shares - shares)
+                user_account.get_paid(self.total_purchase_price(self.symbol, shares))
                 "You have sold #{shares} share(s)"
             else
                 "Sell canceled: You cannot sell more than you have (#{self.shares})"
