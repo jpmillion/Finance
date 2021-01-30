@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
     before_validation :full_name
 
+
     def full_name
         (self.first_name + ' ' + self.last_name).titleize
     end
