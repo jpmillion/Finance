@@ -4,6 +4,8 @@ class UserAccount < ApplicationRecord
     has_many :positions, dependent: :destroy
     accepts_nested_attributes_for :positions
 
+    scope :net_worth -> (user) { where(user: user).sum(:balance) }
+
     after_find do
         self.update(balance: Position.user_account_balance(self))
     end
