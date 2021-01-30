@@ -18,6 +18,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def financial_stats
+        
+    end
+
     def show
     end
 

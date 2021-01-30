@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :customers, controller: :users, only: [:edit, :show, :update, :destroy], type: 'Customer' do
+  resources :customers, controller: :users, type: 'Customer', only: [:edit, :show, :update, :destroy] do
     resources :user_accounts, only: [:index, :new, :create]
   end
 
-  resources :admin, controller: :users, only: [:edit, :show, :update, :destroy]
+  resources :admin, controller: :users, type: 'Admin', only: [:edit, :show, :update, :destroy] do
+    get 'financial_stats', on: :collection
+  end
 
   resources :user_accounts, only: [:show, :destroy] do
     resources :equities, controller: :positions, only: [:new, :create]
