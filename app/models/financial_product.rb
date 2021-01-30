@@ -5,5 +5,6 @@ class FinancialProduct < ApplicationRecord
     validates :name, :description, presence: true
     validates :name, :description, uniqueness: true
 
-    
+    scope :acct_type_count, -> { joins(:user_accounts).group(:name).count }
+
 end
