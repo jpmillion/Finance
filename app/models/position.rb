@@ -1,6 +1,7 @@
 class Position < ApplicationRecord
     belongs_to :user_account
 
+    scope :user_account_positions_value, -> (user_account) { where(user_account: user_account).sum(:value) }
 
     def transaction(transaction: , cash_amount: 0, shares: 0)
         
