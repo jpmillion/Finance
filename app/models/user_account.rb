@@ -6,13 +6,13 @@ class UserAccount < ApplicationRecord
 
     
         
-    def position_exists?(symbol)
-        self.positions.where(symbol: symbol.upcase) == [] ? false : true
-    end
+    # def position_exists?(symbol)
+    #     self.positions.where(symbol: symbol.upcase) == [] ? false : true
+    # end
 
-    def cash_position_exist?
-        !!self.positions.where(type: 'Cash')
-    end
+    # def cash_position_exist?
+    #     !!self.positions.where(type: 'Cash')
+    # end
 
     def cash_position
         positions.first
@@ -29,4 +29,5 @@ class UserAccount < ApplicationRecord
     def get_paid(payment)
         cash_position.update(value: cash_balance + payment)
     end
+
 end
