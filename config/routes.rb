@@ -11,11 +11,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
-  resources :customers, controller: :users, type: 'Customer', only: [:edit, :show, :update, :destroy] do
+  resources :customers, controller: :users, type: 'Customer', except: [:new] do
     resources :user_accounts, only: [:index, :new, :create]
   end
 
-  resources :admin, controller: :users, type: 'Admin', only: [:edit, :show, :update, :destroy] do
+  resources :admins, controller: :users, type: 'Admin', except: [:new] do
     get 'financial_stats', on: :collection
   end
 

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
             redirect_to customer_path(@user) if @user.type == 'Customer'
             redirect_to admin_path(@user) if @user.type == 'Admin'
         else
+            @user.type == nil
             render :new
         end
     end

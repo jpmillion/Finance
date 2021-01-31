@@ -1,12 +1,4 @@
-<% if @user.errors.any? %>
-    <div id="error_explanation">
-        <ul>
-            <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
+<%= render partial: 'error_messages/full_messages', locals: { model: @user } %>
 
 <h1>Registration Form</h1>
 
