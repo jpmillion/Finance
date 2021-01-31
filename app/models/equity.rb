@@ -9,4 +9,9 @@ class Equity < Position
     after_find do
         self.update(value: self.total_value(self.symbol))
     end
+
+    def cash_from_sell
+        user_account.get_paid(total_purchase_price(symbol, shares))
+        user_account
+    end
 end

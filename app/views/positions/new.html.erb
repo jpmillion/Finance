@@ -1,10 +1,4 @@
-<% if @equity.errors.any? %>
-    <%= tag.div id: "error_explanation" do %>
-            <% @equity.errors.full_messages.each do |message| %>
-                <%= tag.li message %>
-            <% end %>
-        <% end %>
-<% end %>
+<%= render partial: 'error_messages/full_messages', locals: { model: @equity } %>
 
 <h1>new position</h1>
 

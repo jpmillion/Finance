@@ -1,9 +1,7 @@
 <% if model.errors.any? %>
-    <div id="error_explanation">
-        <ul>
+    <%= tag.div id: "error_explanation" do %>
             <% model.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+                <%= tag.li message %>
             <% end %>
-        </ul>
-    </div>
+        <% end %>
 <% end %>

@@ -43,6 +43,13 @@ class PositionsController < ApplicationController
         redirect_to @position
     end
 
+    def destroy
+        @equity = Equity.find_by(id: params[:id])
+        user_account = @equity.cash_from_sell
+        @equity.destroy
+        redirect_to user_account, alert: "Sell Complete"
+    end
+
     private
 
     def position_params

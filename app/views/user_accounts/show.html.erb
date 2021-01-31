@@ -17,6 +17,7 @@ acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.n
         <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br>
         <%= position.shares %> <br>
         <%= position.value %> <br>
+        <%= button_to 'Close Position', equity_path(position), method: :delete %> <br>
     <% end %>
     
 
