@@ -1,5 +1,32 @@
 <h1>stats</h1>
 
-<%= FinancialProduct.acct_type_count %>
+<% FinancialProduct.acct_type_count.each do |k, v| %>
 
-<%= display_count %>
+    <p><%= k %> : <%= v %></p>
+
+<% end %>
+
+<h3>Full Service Customers:</h3>
+
+<% Customer.full_service.each do |customer| %>
+
+    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+
+<% end %>
+
+<h3>Standard Service Customers</h3>
+
+<% Customer.standard_service.each do |customer| %>
+
+    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+
+<% end %>
+
+<h3>Self Service Customers</h3>
+
+<% Customer.self_service.each do |customer| %>
+
+    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+
+<% end %>
+

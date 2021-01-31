@@ -1,20 +1,27 @@
 class Position < ApplicationRecord
     belongs_to :user_account
 
+    after_find :convert_value_to_dollars
+
     scope :user_account_balance, -> (user_account) { where(user_account: user_account).sum(:value) }
+
+
+    def convert_value_to_dollars
+        '$%.2f' % self.value
+    end
 
     def transaction(transaction: , cash_amount: 0, shares: 0)
         
         case transaction
 
         when "Deposit"
-            self.value += value
-            "Deposited $#{value} in your account"
+            self.value += cash_amount
+            "Deposited $#{cash_amount} in your account"
 
         when "Withdrawl"
-            if self.value > value
-                self.value -= value
-                "$#{value} withdrawn from your account"
+            if self.value > cash_amount
+                self.value -= cash_amount
+                "$#{cash_amount} withdrawn from your account"
             else
                 "Withdrawl canceled: Insuffcient funds"
             end
