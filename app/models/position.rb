@@ -1,14 +1,14 @@
 class Position < ApplicationRecord
     belongs_to :user_account
 
-    after_find :convert_value_to_dollars
+    # after_find :convert_value_to_dollars
 
     scope :user_account_balance, -> (user_account) { where(user_account: user_account).sum(:value) }
 
 
-    def convert_value_to_dollars
-        '$%.2f' % self.value
-    end
+    # def convert_value_to_dollars
+    #     '$%.2f' % self.value
+    # end
 
     def transaction(transaction: , cash_amount: 0, shares: 0)
         
