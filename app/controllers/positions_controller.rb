@@ -40,7 +40,7 @@ class PositionsController < ApplicationController
         params[:cash] ? cash_amount = params[:cash][:value].to_f : shares = params[:equity][:shares].to_i
         flash[:alert] = @position.transaction(transaction: params[:transaction], cash_amount: cash_amount, shares: shares)
         @position.save if params[:cash]
-        redirect_to user_account_path(@position.user_account)
+        redirect_to @position
     end
 
     private
