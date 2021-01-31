@@ -1,5 +1,7 @@
 <h1>Admin</h1>
 
-<%= current_user.full_name %> <br>
+<%= current_user.full_name %> <br><br>
 
+
+<%= link_to 'Edit Profile', edit_admin_path(current_user) %>
 <%= link_to 'Financial Statistics', financial_stats_admins_path %>

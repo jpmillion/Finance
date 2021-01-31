@@ -10,9 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            flash[:alert] = "Successful Registration"
-            redirect_to customer_path(@user) if @user.type == 'Customer'
-            redirect_to admin_path(@user) if @user.type == 'Admin'
+            redirect_to current_user, alert: "Successful Sign Up"
         else
             @user.type = nil
             render :new
@@ -30,12 +28,8 @@ class UsersController < ApplicationController
     end
 
     def update
-        if current_user.update(user_params)
-            if params[:customer]
-                redirect_to customer_path(current_user), alert: "Successfully Updated Profile"
-            else
-                redirect_to admin_path(current_user), alert: "Successfully Updated Profile"
-            end
+        if current_user.update(user_params)  
+            redirect_to current_user, alert: "Profile Updated"
         else
             render :edit
         end

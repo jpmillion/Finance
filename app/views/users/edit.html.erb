@@ -1,12 +1,4 @@
-<% if current_user.errors.any? %>
-    <div id="error_explanation">
-        <ul>
-            <% current_user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
+<%= render partial: 'error_messages/full_messages', locals: { model: current_user } %>
 
 <h1>Edit Profile</h1>
 
