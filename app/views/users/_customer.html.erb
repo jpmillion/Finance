@@ -1,13 +1,6 @@
 <br><br><%= current_user.full_name %> <br>
 
-<p>Your Accounts</p><br>
-
-
-<% current_user.user_accounts.each do |acct| %>
-
-    <%= link_to acct.financial_product.name, user_account_path(acct) %> <br>
-
-<% end %>
+<%= link_to 'View Accounts', customer_user_accounts_path(current_user) %>
 <br><br>
 
 <!-- button_to 'Close All Accounts', current_user, method: :delete -->

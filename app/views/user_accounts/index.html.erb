@@ -1,0 +1,10 @@
+<p>Your Accounts</p><br>
+
+
+<% @user_accounts.each do |acct| %>
+
+    <%= link_to acct.financial_product.name, user_account_path(acct) %> <br>
+
+<% end %> <br><br><br><br>
+
+<%= link_to 'Home', customer_path(current_user) %> <br>

@@ -1,5 +1,9 @@
 class UserAccountsController < ApplicationController
 
+    def index
+        @user_accounts = UserAccount.joins(:user, :financial_product).where(user: current_user)
+    end
+
     def new
         @user_account = UserAccount.new
         @cash = @user_account.positions.build
