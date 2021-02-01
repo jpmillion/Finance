@@ -4,7 +4,7 @@
 
 <%= form_with model: [current_user, @user_account] do |f| %>
 
-    <%= f.hidden_field :user_id, value: current_user.id %>
+    
     <%= f.collection_select :financial_product_id, @products, :id, :name %> <br>
 
     <%= f.fields_for :positions, @cash do |position| %>

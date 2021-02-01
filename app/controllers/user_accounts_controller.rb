@@ -11,7 +11,7 @@ class UserAccountsController < ApplicationController
         if current_user.financial_products.exists?(id: fin_product.id)
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
-            @user_account = UserAccount.create(user_account_params)
+            @user_account = current_user.user_accounts.create(user_account_params)
             redirect_to user_account_path(@user_account), alert: "You have successfully opened a #{fin_product.name}"
         end
     end
@@ -30,6 +30,6 @@ class UserAccountsController < ApplicationController
     private
 
     def user_account_params
-        params.require(:user_account).permit(:financial_product_id, :user_id, positions_attributes: [:type, :value])
+        params.require(:user_account).permit(:financial_product_id, positions_attributes: [:type, :value])
     end
 end
