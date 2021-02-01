@@ -1,7 +1,7 @@
 class PositionsController < ApplicationController
 
     def index
-        @positions = Position.joins(:user_account).where(user_account: UserAccount.find_by(id: params[:user_account_id]))
+        @positions = Position.belonging_to_user_account(UserAccount.find_by(id: params[:user_account_id]))
     end
 
     def new
