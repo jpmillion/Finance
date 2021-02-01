@@ -6,6 +6,6 @@ acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.n
 <%= link_to 'View Positions', user_account_equities_path(@user_account) %>
 <br><br><br>
 
-<%= link_to 'create new equity position', new_user_account_equity_path(@user_account) %> <br>
+
 <%= link_to 'Home', customer_path(current_user) %> <br>
 <%= button_to 'close account', user_account_path(@user_account), method: :delete %>

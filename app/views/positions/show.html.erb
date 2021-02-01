@@ -5,4 +5,5 @@
 
 <%= render partial: "cash", locals: { cash: @position } if @position.type == 'Cash' %>
 
-<%= link_to 'Back to Account', user_account_path(@position.user_account) %> <br>
+<%= link_to 'Back to Your Positions', user_account_equities_path(@position.user_account) %>
+<%= link_to 'Back to Your Account', user_account_path(@position.user_account) %> <br>

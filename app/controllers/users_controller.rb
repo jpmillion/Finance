@@ -22,6 +22,8 @@ class UsersController < ApplicationController
     end
 
     def show
+        binding.pry
+        redirect_to current_user, alert: "Access Denied" unless current_user.id == params[:id].to_i
     end
 
     def edit 

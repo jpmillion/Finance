@@ -18,4 +18,6 @@
 
 <% end %> <br><br><br>
 
-<%= link_to 'back to account home', user_account_path(params[:user_account_id]) %> <%= link_to 'Home', customer_path(current_user) %>
+<%= link_to 'back to account home', user_account_path(params[:user_account_id]) %> 
+<%= link_to 'create new equity position', new_user_account_equity_path(params[:user_account_id]) %> <br>
+<%= link_to 'Home', customer_path(current_user) %>
