@@ -19,11 +19,9 @@ Rails.application.routes.draw do
     get 'financial_stats', on: :collection
   end
 
-  resources :user_accounts, only: [:show, :destroy] do
-    resources :equities, controller: :positions, only: [:new, :create]
+  resources :user_accounts, only: [:show, :destroy], shallow: true  do
+    resources :equities, controller: :positions, type: 'Equity' only: [:index, :new, :create]
   end
-
-  resources :equities, controller: :positions, type: 'Equity', only: [:show, :edit, :update, :destroy]
 
   resources :cash, controller: :positions, type: 'Cash', only: [:show, :edit, :update]
 
