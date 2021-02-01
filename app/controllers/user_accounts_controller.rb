@@ -12,13 +12,7 @@ class UserAccountsController < ApplicationController
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
             @user_account = UserAccount.create(user_account_params)
-            if @user_account.save
-                redirect_to user_account_path(@user_account), alert: "You have successfully opened a #{fin_product.name}"
-            else
-                @cash = @user_account.positions.build
-                @products = FinancialProduct.all
-                render :new
-            end
+            redirect_to user_account_path(@user_account), alert: "You have successfully opened a #{fin_product.name}"
         end
     end
 
