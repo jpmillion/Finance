@@ -1,7 +1,7 @@
 <h1>User Account show page</h1>
 
 
-acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.name %> - <%= @user_account.balance %> <br><br>
+acct. number 0000<%= @user_account.id %> - <%= @user_account.financial_product.name %> - <%= number_to_currency(@user_account.balance) %> <br><br>
 
 <%= link_to 'View Positions', user_account_equities_path(@user_account) %>
 <br><br><br>

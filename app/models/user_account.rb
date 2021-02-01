@@ -10,14 +10,6 @@ class UserAccount < ApplicationRecord
     after_find do
         self.update(balance: Position.user_account_balance(self))
     end
-        
-    # def position_exists?(symbol)
-    #     self.positions.where(symbol: symbol.upcase) == [] ? false : true
-    # end
-
-    # def cash_position_exist?
-    #     !!self.positions.where(type: 'Cash')
-    # end
 
     def cash_position
         positions.first
