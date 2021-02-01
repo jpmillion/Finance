@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
     skip_before_action :login_required, only: [:new, :create]
+    before_action :check_authorization, except: [:new, :create, :financial_stats]
+    before_action :check_admin_authorization, only: :financial_stats
 
     def new
         @user = User.new
@@ -22,8 +24,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
-        redirect_to current_user, alert: "Access Denied" unless current_user.id == params[:id].to_i
+        
     end
 
     def edit 
@@ -44,6 +45,14 @@ class UsersController < ApplicationController
     end
 
     private
+
+    def check_authorization
+        redirect_to current_user, alert: "Access Denied" unless current_user.id == params[:id].to_i 
+    end
+
+    def check_admin_authorization
+        redirect_to current_user, alert: "Your not admin" unless current_user.type == 'Admin'
+    end
 
     def user_params
         if params[:customer]
