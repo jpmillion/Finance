@@ -1,6 +1,7 @@
 class UserAccountsController < ApplicationController
 
     before_action :check_user_account_authorization, except: [:show, :destroy]
+    before_action :check_customer_user_account, only: [:show, :destroy]
 
     def index
         @user_accounts = UserAccount.index_by_customer(current_user)
@@ -34,6 +35,10 @@ class UserAccountsController < ApplicationController
 
 
     private
+
+    def check_customer_user_account
+        not_authorization unless UserAccount.index_by_customer(current_user).exists?(id: params[:id]) 
+    end
 
     def check_user_account_authorization
         not_authorization unless current_user.id == params[:customer_id].to_i
