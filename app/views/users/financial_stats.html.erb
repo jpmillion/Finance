@@ -2,7 +2,7 @@
 
 <% FinancialProduct.acct_type_count.each do |k, v| %>
 
-    <p><%= k %> : <%= v %></p>
+    <%= display_sums_of_products(k, v) %>
 
 <% end %>
 
@@ -10,7 +10,7 @@
 
 <% Customer.full_service.each do |customer| %>
 
-    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+    <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
 
@@ -18,7 +18,7 @@
 
 <% Customer.standard_service.each do |customer| %>
 
-    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+    <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
 
@@ -26,7 +26,7 @@
 
 <% Customer.self_service.each do |customer| %>
 
-    <p><%= customer.full_name %>: net worth <%= customer.net_worth %></p>
+    <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
 
