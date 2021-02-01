@@ -1,4 +1,9 @@
 class PositionsController < ApplicationController
+
+    def index
+        @positions = Position.joins(:user_account).where(user_account: UserAccount.find_by(id: params[:user_account_id]))
+    end
+
     def new
         @equity = Equity.new(user_account_id: params[:user_account_id])
         @user_account = @equity.user_account
