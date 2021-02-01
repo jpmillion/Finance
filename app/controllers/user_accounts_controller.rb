@@ -1,7 +1,7 @@
 class UserAccountsController < ApplicationController
 
     def index
-        @user_accounts = UserAccount.joins(:user, :financial_product).where(user: current_user)
+        @user_accounts = UserAccount.index_by_customer(current_user)
     end
 
     def new
