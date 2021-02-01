@@ -10,7 +10,7 @@
         <h4>Equities</h4>
     <% else %>
         <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br>
-        <%= position.shares %> <br>
+        <%= position.shares %> shares <br>
         <%= number_to_currency(position.value) %> <br>
         <%= button_to 'Close Position', equity_path(position), method: :delete %> <br>
     <% end %>

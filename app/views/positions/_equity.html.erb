@@ -1,9 +1,10 @@
 
 <%= equity.company_name(equity.symbol) %> <br>
 <%= equity.symbol %> <br>
-<%= equity.shares %> <br>
+<%= equity.shares %> shares <br>
 <%= number_to_currency(equity.total_value(equity.symbol)) %> <br>
 <%= equity.created_at %> <br>
 <%= equity.updated_at %> <br>
+<br>
 
 <%= link_to 'add or reduce position', edit_equity_path(equity) %> <br>
