@@ -46,12 +46,12 @@ class UsersController < ApplicationController
 
     private
 
-    def check_authorization
-        redirect_to current_user, alert: "Access Denied" unless current_user.id == params[:id].to_i 
+    def check_authorization 
+        not_authorization unless current_user.id == params[:id].to_i 
     end
 
     def check_admin_authorization
-        redirect_to current_user, alert: "Your not admin" unless current_user.type == 'Admin'
+        not_authorization unless current_user.type == 'Admin'
     end
 
     def user_params

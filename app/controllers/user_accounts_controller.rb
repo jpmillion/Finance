@@ -1,5 +1,7 @@
 class UserAccountsController < ApplicationController
 
+    before_action :check_user_account_authorization, except: [:show, :destroy]
+
     def index
         @user_accounts = UserAccount.index_by_customer(current_user)
     end
@@ -32,6 +34,10 @@ class UserAccountsController < ApplicationController
 
 
     private
+
+    def check_user_account_authorization
+        not_authorization unless current_user.id == params[:customer_id].to_i
+    end
 
     def user_account_params
         params.require(:user_account).permit(:financial_product_id, positions_attributes: [:type, :value])
