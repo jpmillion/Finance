@@ -1,5 +1,8 @@
 class PositionsController < ApplicationController
 
+    before_action :check_customer_user_account, only: [:index, :new, :create]
+    before_action :check_customer_positions, except: [:index, :new, :create]
+
     def index
         @positions = Position.index_by_user_account(UserAccount.find_by(id: params[:user_account_id]))
     end
@@ -34,7 +37,6 @@ class PositionsController < ApplicationController
     end
 
     def edit
-        #binding.pry
         @position = Position.find_by(id: params[:id])
         redirect_to customer_path(current_user), alert: "Position does not exist" if @position.nil?
     end
@@ -56,6 +58,14 @@ class PositionsController < ApplicationController
     end
 
     private
+
+    def check_customer_positions
+        not_authorization unless current_user.positions.exists?(id: params[:id])
+    end
+
+    def check_customer_user_account
+        not_authorization unless UserAccount.index_by_customer(current_user).exists?(id: params[:user_account_id]) 
+    end
 
     def position_params
         params.require(:position).permit(:symbol, :shares, :user_account_id, :type, :value)
