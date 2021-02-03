@@ -1,7 +1,13 @@
 class CustomersController < ApplicationController
 
     def create
-        
+        @customer = User.new(customer_params)
+        if @customer.save
+            session[:user_id] = @customer.id
+            redirect_to current_user, alert: "Successful Sign Up"
+        else
+            render "users/new"
+        end
     end
 
     def show
