@@ -8,7 +8,7 @@ class CustomersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to current_user, alert: "Successful Sign Up"
         else
-            render "users/new"
+            render :'users/new'
         end
     end
 
@@ -16,11 +16,15 @@ class CustomersController < ApplicationController
     end
 
     def edit
-        
+        render :'users/edit'
     end
 
     def update
-        
+        if current_user.update(customer_params)  
+             redirect_to current_user, alert: "Profile Updated"
+        else
+            render :'users/edit'
+        end
     end
 
     def destroy
