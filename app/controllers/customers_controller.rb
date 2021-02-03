@@ -1,9 +1,11 @@
 class CustomersController < ApplicationController
 
+    skip_before_action :login_required, only: :create
+
     def create
-        @customer = User.new(customer_params)
-        if @customer.save
-            session[:user_id] = @customer.id
+        @user = User.new(customer_params)
+        if @user.save
+            session[:user_id] = @user.id
             redirect_to current_user, alert: "Successful Sign Up"
         else
             render "users/new"
@@ -11,7 +13,6 @@ class CustomersController < ApplicationController
     end
 
     def show
-        
     end
 
     def edit

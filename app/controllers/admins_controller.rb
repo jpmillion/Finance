@@ -1,9 +1,11 @@
 class AdminsController < ApplicationController
 
+    skip_before_action :login_required, only: :create
+
     def create
-        @adim = User.new(admin_params)
-        if @admin.save
-            session[:user_id] = @admin.id
+        @user = User.new(admin_params)
+        if @user.save
+            session[:user_id] = @user.id
             redirect_to current_user, alert: "Successful Sign Up"
         else
             render "users/new"
