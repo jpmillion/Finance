@@ -57,5 +57,5 @@ gem 'iex-ruby-client'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth'
-gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-github'
 
