@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
     skip_before_action :login_required, only: [:new, :create]
-    before_action :check_authorization, except: [:new, :create, :financial_stats]
-    before_action :check_admin_authorization, only: :financial_stats
+    # before_action :check_authorization, except: [:new, :create, :financial_stats]
+    # before_action :check_admin_authorization, only: :financial_stats
 
     def new
         @user = User.new

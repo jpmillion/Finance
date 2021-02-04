@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
 
     skip_before_action :login_required, only: :create
+    before_action :check_admin_authorization, except: :create
 
     def create
         @user = User.new(admin_params)
@@ -35,6 +36,11 @@ class AdminsController < ApplicationController
     end
 
     private
+
+    def check_admin_authorization
+        not_authorization unless current_user.id == params[:id].to_i
+        not_authorization unless current_user.type == 'Admin'
+    end
 
     def admin_params
         params.require(:admin).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)

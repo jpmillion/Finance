@@ -1,6 +1,7 @@
 class CustomersController < ApplicationController
 
     skip_before_action :login_required, only: :create
+    before_action :check_authorization, except: [:new, :create]
 
     def create
         @user = User.new(customer_params)
@@ -34,6 +35,10 @@ class CustomersController < ApplicationController
     end
 
     private
+
+    def check_authorization 
+        not_authorization unless current_user.id == params[:id].to_i 
+    end
 
     def customer_params
         params.require(:customer).permit(:first_name, :last_name, :username, :email, :admin, :password, :password_confirmation, :type)

@@ -7,4 +7,5 @@
 <%= equity.updated_at %> <br>
 <br>
 
-<%= link_to 'add or reduce position', edit_equity_path(equity) %> <br>
+<%= link_to 'add or reduce position', edit_equity_path(equity) %> <br><br>
+<%= button_to 'Close Position', equity_path(equity), method: :delete %> <br>
