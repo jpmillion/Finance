@@ -4,4 +4,5 @@
 
 
 <%= link_to 'Edit Profile', edit_admin_path(current_user) %>
-<%= link_to 'Financial Statistics', financial_stats_admins_path %>
+<%= link_to 'Financial Statistics', financial_stats_admins_path %> <br><br>
+<%= button_to 'Delete account', admin_path(current_user), method: :delete %>

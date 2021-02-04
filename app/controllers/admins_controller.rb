@@ -29,7 +29,9 @@ class AdminsController < ApplicationController
     end
 
     def destroy
-        
+        current_user.destroy
+        session.delete :user_id
+        redirect_to root_path, alert: "Account Successfully Terminated" 
     end
 
     private
