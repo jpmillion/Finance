@@ -10,8 +10,7 @@
 
   <body>
     <header>
-      <%= link_to 'Sign In with Devloper', '/auth/developer' %>
-      <%= link_to 'Sign In with GitHub', '/auth/github' if !session[:user_id]%>
+      <%= button_to 'Log in with Github', '/auth/github', method: :post %>
       <%= link_to('Log In', login_path) unless session[:user_id] %>
       <%= link_to('Sign Up', new_user_path) unless session[:user_id] %>
     </header>

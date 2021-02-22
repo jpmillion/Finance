@@ -6,17 +6,35 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(username: params[:user][:username])
-    if @user && @user.authenticate(params[:user][:password])
-      session[:user_id] = @user.id
-      redirect_to customer_path(@user), alert: "Successfully Logged In"
+    if auth
+      @user = Customer.find_or_create_by(email: auth['info']['email']) do |u|
+        u.password = SecureRandom.hex(12)
+      end
+      if @user
+        session[:user_id] = @user.id
+        redirect_to @user
+      else
+        redirect_to root
+      end
     else
-      redirect_to login_path, alert: "Invalid username or password"
+      @user = User.find_by(username: params[:user][:username])
+      if @user && @user.authenticate(params[:user][:password])
+        session[:user_id] = @user.id
+        redirect_to customer_path(@user), alert: "Successfully Logged In"
+      else
+        redirect_to login_path, alert: "Invalid username or password"
+      end
     end
   end
 
   def destroy
     session.clear
     redirect_to root_path, alert: "Successfully Logged Out"
+  end
+
+  private 
+  
+  def auth
+    request.env['omniauth.auth']
   end
 end

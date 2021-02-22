@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#login'
 
+  
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   resources :sessions, only: [:create, :destroy] 
