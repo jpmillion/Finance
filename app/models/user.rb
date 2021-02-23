@@ -5,7 +5,7 @@ class User < ApplicationRecord
     has_many :financial_products, through: :user_accounts
     has_many :positions, through: :user_accounts
 
-    # validates :first_name, :last_name, :username, :email, presence: true
+    #validates :first_name, :last_name, :username, :email, presence: true
     validates :username, :email, uniqueness: true
 
     # before_validation :full_name
