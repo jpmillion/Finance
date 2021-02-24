@@ -15,4 +15,5 @@ class Customer < User
     def self.self_service
         self.select {|customer| customer.net_worth <= 100000 }
     end
+
 end

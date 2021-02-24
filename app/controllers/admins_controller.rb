@@ -38,7 +38,9 @@ class AdminsController < ApplicationController
     private
 
     def check_admin_authorization
-        not_authorization unless current_user.id == params[:id].to_i
+        if params[:id]
+            not_authorization unless current_user.id == params[:id].to_i
+        end
         not_authorization unless current_user.type == 'Admin'
     end
 
