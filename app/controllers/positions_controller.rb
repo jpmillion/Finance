@@ -15,21 +15,7 @@ class PositionsController < ApplicationController
     def create
         symbol, shares = params[:equity][:symbol].upcase, params[:equity][:shares].to_i
         @user_account = UserAccount.find_by(id: params[:user_account_id])
-        if @user_account.positions.exists?(symbol: symbol)
-            redirect_to new_user_account_equity_path(@user_account), alert: "You already have a position in #{symbol}"
-        else
-            @equity = @user_account.positions.build(equity_params)
-            if @equity.save
-                if @equity.affordable?(symbol, shares)
-                    redirect_to equity_path(@equity), alert: "You purchased #{shares} share(s) of #{symbol} for $#{@equity.total_purchase_price(symbol, shares)}"
-                else
-                    @equity.destroy
-                    redirect_to new_user_account_equity_path(@user_account), alert: "Insufficient Funds"
-                end
-            else
-                render :new
-            end    
-        end
+        create_position_or_redirect_if_purchase_not_valid(symbol, shares)   
     end
 
     def show
@@ -74,4 +60,33 @@ class PositionsController < ApplicationController
     def equity_params
         params.require(:equity).permit(:symbol, :shares, :type)
     end
+
+    def redirect_if_symbol_not_found(symbol)
+        if Equity.lookup(symbol).class == IEX::Errors::SymbolNotFoundError
+            redirect_to new_user_account_equity_path(@user_account), alert: "Symbol #{symbol} not found"
+        end
+    end
+
+    def redirect_if_position_exist(symbol)
+        if @user_account.positions.exists?(symbol: symbol)
+            redirect_to new_user_account_equity_path(@user_account), alert: "You already have a position in #{symbol}"
+        end
+    end
+
+    def create_position_or_redirect_if_purchase_not_valid(symbol, shares)
+        redirect_if_position_exist(symbol)
+        redirect_if_symbol_not_found(symbol)
+        @equity = @user_account.positions.build(equity_params)
+        if @equity.save
+            if @equity.affordable?(symbol, shares)
+                redirect_to equity_path(@equity), alert: "You purchased #{shares} share(s) of #{symbol} for $#{@equity.total_purchase_price(symbol, shares)}"
+            else
+                @equity.destroy
+                redirect_to new_user_account_equity_path(@user_account), alert: "Insufficient Funds"
+            end
+        else
+            render :new
+        end
+    end
+    
 end

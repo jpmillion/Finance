@@ -15,14 +15,16 @@ class Equity < Position
         user_account
     end
 
-    @@lookup = IEX::Api::Client.new(
-        publishable_token: 'pk_02f29690e23d4897b4b7916f6e78d39e',
-        secret_token: 'sk_a74468b214424b4c825232000f18608c',
-        endpoint: 'https://cloud.iexapis.com/v1'
-    )
+    def self.lookup(symbol)
+        IEX::Api::Client.new(
+            publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
+            secret_token: ENV['IEX_API_SECRET_TOKEN'],
+            endpoint: 'https://cloud.iexapis.com/v1'
+        ).quote(symbol)
+    end
 
     def share_price(symbol)
-        @@lookup.quote(symbol).latest_price
+        Equity.lookup(symbol).latest_price
     end
 
     def total_value(symbol)
@@ -34,7 +36,7 @@ class Equity < Position
     end
 
     def company_name(symbol)
-        @@lookup.quote(symbol).company_name
+        Equity.lookup(symbol).company_name
     end
 
     def affordable?(symbol, shares)
