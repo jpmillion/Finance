@@ -7,7 +7,7 @@ class CustomersController < ApplicationController
         @user = User.new(customer_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to current_user, alert: "Successful Sign Up"
+            redirect_to current_user, notice: "Successful Sign Up"
         else
             render :'users/new'
         end
@@ -22,7 +22,7 @@ class CustomersController < ApplicationController
 
     def update
         if current_user.update(customer_params)  
-             redirect_to current_user, alert: "Profile Updated"
+             redirect_to current_user, notice: "Profile Updated"
         else
             render :'users/edit'
         end
@@ -31,7 +31,7 @@ class CustomersController < ApplicationController
     def destroy
         current_user.destroy
         session.delete :user_id
-        redirect_to root_path, alert: "Account Successfully Terminated"
+        redirect_to root_path, notice: "Account Successfully Terminated"
     end
 
     private

@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to root_path, alert: "Successfully Logged Out"
+    redirect_to root_path, notice: "Successfully Logged Out"
   end
 
   private 
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     end
     if @customer
       session[:user_id] = @customer.id
-      redirect_to @customer, alert: 'Successfully Logged In with github'
+      redirect_to @customer, notice: 'Successfully Logged In with github'
     else
       redirect_to login_path, alert: 'Unable to log in with github'
     end
@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:user][:username])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      redirect_to customer_path(@user), alert: "Successfully Logged In"
+      redirect_to customer_path(@user), notice: "Successfully Logged In"
     else
       redirect_to login_path, alert: "Invalid username or password"
     end

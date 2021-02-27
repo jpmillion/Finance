@@ -19,7 +19,7 @@ class UserAccountsController < ApplicationController
             redirect_to new_customer_user_account_path(current_user), alert: "You already opened a #{fin_product.name}"
         else
             @user_account = current_user.user_accounts.create(user_account_params)
-            redirect_to user_account_path(@user_account), alert: "You have successfully opened a #{fin_product.name}"
+            redirect_to user_account_path(@user_account), notice: "You have successfully opened a #{fin_product.name}"
         end
     end
 
@@ -30,7 +30,7 @@ class UserAccountsController < ApplicationController
     def destroy
         @user_account = UserAccount.find_by(id: params[:id])
         @user_account.destroy unless @user_account.nil?
-        redirect_to customer_path(current_user), alert: "Account has been closed"
+        redirect_to customer_path(current_user), notice: "Account has been closed"
     end
 
 

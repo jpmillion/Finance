@@ -18,7 +18,8 @@
       </ul>
     </nav>
      <% flash.each do |name, msg| %>
-       <%= content_tag :div, msg, class: "#{name} alert alert-info" %>
+       <%= content_tag :div, msg, class: "alert alert-success text-center" if name == 'notice' %>
+       <%= content_tag :div, msg, class: "alert alert-danger text-center" if name == 'alert' %>
      <% end %>
 
     <%= yield %>

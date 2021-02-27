@@ -1,15 +1,15 @@
 
 
 <%= form_with model: user do |f| %>
-    <div class="form-group text-center bg-light">
+    <div class="form-group text-center">
     <%= f.label :first_name %> <br>
-    <%= f.text_field :first_name %> <br>
+    <%= f.text_field :first_name %> <br><br>
 
     <%= f.label :last_name %> <br>
-    <%= f.text_field :last_name %> <br>
+    <%= f.text_field :last_name %> <br><br>
 
     <%= f.label :username %> <br>
-    <%= f.text_field :username %> <br>
+    <%= f.text_field :username %> <br><br>
 
     <%= f.label :email %> <br>
     <%= f.text_field :email %> <br><br>
@@ -18,7 +18,7 @@
     <%= f.select :type, ['Customer', 'Admin'] if @user %> <br><br>
 
     <%= f.label :password %> <br>
-    <%= f.password_field :password %> <br>
+    <%= f.password_field :password %> <br><br>
 
     <%= f.label 'Confirm Password' %> <br>
     <%= f.password_field :password_confirmation %> <br><br>

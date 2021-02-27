@@ -40,7 +40,7 @@ class PositionsController < ApplicationController
         @equity = Equity.find_by(id: params[:id])
         user_account = @equity.cash_from_sell
         @equity.destroy
-        redirect_to user_account, alert: "Sell Complete"
+        redirect_to user_account, notice: "Sell Complete"
     end
 
     private
@@ -79,7 +79,7 @@ class PositionsController < ApplicationController
         @equity = @user_account.positions.build(equity_params)
         if @equity.save
             if @equity.affordable?(symbol, shares)
-                redirect_to equity_path(@equity), alert: "You purchased #{shares} share(s) of #{symbol} for $#{@equity.total_purchase_price(symbol, shares)}"
+                redirect_to equity_path(@equity), notice: "You purchased #{shares} share(s) of #{symbol} for $#{@equity.total_purchase_price(symbol, shares)}"
             else
                 @equity.destroy
                 redirect_to new_user_account_equity_path(@user_account), alert: "Insufficient Funds"

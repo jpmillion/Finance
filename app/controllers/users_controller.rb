@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to current_user, alert: "Successful Sign Up"
+            redirect_to current_user, notice: "Successful Sign Up"
         else
             @user.type = nil
             render :new
