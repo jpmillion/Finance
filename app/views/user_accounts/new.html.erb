@@ -1,18 +1,21 @@
-<h1>new user account</h1>
+<div class="jumbotron text-center">
+<h1>Open New Account</h1><br>
 
 
 
 <%= form_with model: [current_user, @user_account] do |f| %>
 
     
-    <%= f.collection_select :financial_product_id, @products, :id, :name %> <br>
+    <%= f.collection_select :financial_product_id, @products, :id, :name %> <br><br>
 
     <%= f.fields_for :positions, @cash do |position| %>
-    <%= position.hidden_field :type, value: 'Cash' %><br>
+    <%= position.hidden_field :type, value: 'Cash' %>
     <%= position.label :value, 'Enter your initial deposit' %> <br>
-    <%= position.number_field :value, value: 0, min: 0, step: :any %> <br>
+    <%= position.number_field :value, value: 0, min: 0, step: :any %> <br><br>
     <% end %>
 
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
 
 <% end %>
+
+</div>
