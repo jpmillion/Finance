@@ -1,12 +1,11 @@
-<h1>Sessions#login</h1>
-<p>Find me in app/views/sessions/login.html.erb</p>
+<h1 class="jumbotron text-center">Login</h1>
 
 <%= form_with model: @user, url: sessions_path do |f| %>
-
+    <div class="text-center">
     <%= f.label :username %> <br>
-    <%= f.text_field :username %> <br>
+    <%= f.text_field :username %> <br><br>
     <%= f.label :password %> <br>
-    <%= f.password_field :password %> <br>
-    <%= f.submit 'Log In' %>
-
+    <%= f.password_field :password %> <br><br>
+    <%= f.submit 'Log In', class: "btn btn-primary" %>
+    </div>
 <% end %>
