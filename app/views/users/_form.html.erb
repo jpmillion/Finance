@@ -1,7 +1,7 @@
 
 
 <%= form_with model: user do |f| %>
-
+    <div class="form-group text-center bg-light">
     <%= f.label :first_name %> <br>
     <%= f.text_field :first_name %> <br>
 
@@ -12,18 +12,20 @@
     <%= f.text_field :username %> <br>
 
     <%= f.label :email %> <br>
-    <%= f.text_field :email %> <br>
+    <%= f.text_field :email %> <br><br>
 
     <%= f.label 'Select Customer or Admin' if @user %> <br>
-    <%= f.select :type, ['Customer', 'Admin'] if @user %> <br>
+    <%= f.select :type, ['Customer', 'Admin'] if @user %> <br><br>
 
     <%= f.label :password %> <br>
     <%= f.password_field :password %> <br>
 
     <%= f.label 'Confirm Password' %> <br>
-    <%= f.password_field :password_confirmation %> <br>
+    <%= f.password_field :password_confirmation %> <br><br>
 
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
+
+    </div>
 
 <% end %>
 

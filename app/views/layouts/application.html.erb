@@ -9,7 +9,7 @@
 
   </head>
 
-  <body>
+  <body class="bg-light">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav">
           <li class="nav-item active"><%= link_to 'Log in with Github', '/auth/github', class: "nav-link", method: :post unless session[:user_id] %></li>
