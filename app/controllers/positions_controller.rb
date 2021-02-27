@@ -4,7 +4,8 @@ class PositionsController < ApplicationController
     before_action :check_customer_positions, except: [:index, :new, :create]
 
     def index
-        @positions = Position.index_by_user_account(UserAccount.find_by(id: params[:user_account_id]))
+        @user_account = UserAccount.find_by(id: params[:user_account_id])
+        @positions = Position.index_by_user_account(@user_account)
     end
 
     def new

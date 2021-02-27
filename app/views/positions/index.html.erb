@@ -1,24 +1,25 @@
-<h3>Positions</h3>
+<div class="jumbotron text-center">
+<h1><%= @user_account.financial_product.name %> Positions</h1>
+<%= link_to 'User account home', @user_account %> <br><br><br>
 
 <% @positions.each do |position| %>
 
     <% if position.type == 'Cash' %>
-        <h4>Cash</h4>
+        <h2>Cash</h2>
         <!-- <%= link_to position.type, cash_path(position) %> <br> -->
-        <%= position.type %>
-        <%= number_to_currency(position.value) %> - 
-        <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br>
-        <h4>Equities</h4>
+        <%= position.type %> balance:
+        <%= number_to_currency(position.value) %> <br> 
+        <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br><br>
+        <h2>Equities</h2>
     <% else %>
-        <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br><br>
+        <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br>
         <!--<%= position.shares %> shares <br>-->
         <!--<%= number_to_currency(position.value) %> <br>-->
         <!--<%= button_to 'Close Position', equity_path(position), method: :delete %> <br>-->
     <% end %>
     
 
-<% end %> <br><br><br>
+<% end %> <br><br>
+<%= link_to 'create new equity position', new_user_account_equity_path(@user_account) %>
 
-<%= link_to 'back to account home', user_account_path(params[:user_account_id]) %> 
-<%= link_to 'create new equity position', new_user_account_equity_path(params[:user_account_id]) %> <br>
-<%= link_to 'Home', customer_path(current_user) %>
+</div>
