@@ -4,7 +4,7 @@
     <title>Finance</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
   </head>
 
@@ -15,7 +15,7 @@
       <%= link_to('Sign Up', new_user_path) unless session[:user_id] %>
     </header>
      <% flash.each do |name, msg| %>
-       <%= content_tag :div, msg, class: name %>
+       <%= content_tag :div, msg, class: "#{name} alert alert-info" %>
      <% end %>
 
     <%= yield %>

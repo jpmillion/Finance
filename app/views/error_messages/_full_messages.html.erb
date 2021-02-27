@@ -1,5 +1,5 @@
 <% if model.errors.any? %>
-    <%= tag.div id: "error_explanation" do %>
+    <%= tag.div id: "error_explanation", class: "alert alert-info" do %>
             <% model.errors.full_messages.each do |message| %>
                 <%= tag.li message %>
             <% end %>
