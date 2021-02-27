@@ -9,11 +9,13 @@
   </head>
 
   <body>
-    <header>
-      <%= button_to 'Log in with Github', '/auth/github', method: :post unless session[:user_id] %>
-      <%= link_to('Log In', login_path) unless session[:user_id] %>
-      <%= link_to('Sign Up', new_user_path) unless session[:user_id] %>
-    </header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <ul class="navbar-nav">
+          <li class="nav-item active"><%= link_to 'Log in with Github', '/auth/github', class: "nav-link", method: :post unless session[:user_id] %></li>
+          <li class="nav-item active"><%= link_to 'Log In', login_path, class: "nav-link" unless session[:user_id] %></li>
+          <li class="nav-item active"><%= link_to 'Sign Up', new_user_path, class: "nav-link"  unless session[:user_id] %></li>
+      </ul>
+    </nav>
      <% flash.each do |name, msg| %>
        <%= content_tag :div, msg, class: "#{name} alert alert-info" %>
      <% end %>
