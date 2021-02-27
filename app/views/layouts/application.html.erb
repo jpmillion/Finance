@@ -10,11 +10,19 @@
   </head>
 
   <body class="bg-light">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
       <ul class="navbar-nav">
-          <li class="nav-item active"><%= link_to 'Log in with Github', '/auth/github', class: "nav-link", method: :post unless session[:user_id] %></li>
-          <li class="nav-item active"><%= link_to 'Log In', login_path, class: "nav-link" unless session[:user_id] %></li>
-          <li class="nav-item active"><%= link_to 'Sign Up', new_user_path, class: "nav-link"  unless session[:user_id] %></li>
+        <% if session[:user_id] %>
+          <li class="nav-item active"><%= link_to 'Open New Account', new_customer_user_account_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item active"><%= link_to 'View Your Accounts', customer_user_accounts_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item active"><%= link_to 'Edit Profile', edit_customer_path(current_user), class: "nav-link" %></li>
+          <li class="nav-item active"><%= button_to 'Close all Accounts and Delete Profile', customer_path(current_user), class: "nav-link btn", method: :delete %></li>
+          <li class="nav-item active"><%= button_to 'Log Out', session_path(current_user), class: "nav-link btn", method: :delete %> </li>
+        <% else %>
+          <li class="nav-item active"><%= link_to 'Log in with Github', '/auth/github', class: "nav-link", method: :post %></li>
+          <li class="nav-item active"><%= link_to 'Log In', login_path, class: "nav-link" %></li>
+          <li class="nav-item active"><%= link_to 'Sign Up', new_user_path, class: "nav-link"  %></li>
+        <% end %>
       </ul>
     </nav>
      <% flash.each do |name, msg| %>
@@ -24,6 +32,5 @@
 
     <%= yield %>
 
-    <br> <%= button_to('Log Out', session_path(current_user), method: :delete) if session[:user_id] %> 
   </body>
 </html>

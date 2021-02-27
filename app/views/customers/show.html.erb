@@ -1,13 +1,4 @@
-<!-- <br><br><%= current_user.full_name %> <br> -->
-<p>Total Combined Balance of Accounts</p>
-<%= number_to_currency(current_user.net_worth) %> <br><br>
-
-<%= link_to 'View Accounts', customer_user_accounts_path(current_user) %>
-<br><br>
-
-<!-- button_to 'Close All Accounts', current_user, method: :delete -->
-<br><br>
-<%= link_to 'Open an Account', new_customer_user_account_path(current_user) %> <br>
-<%= link_to 'edit profile', edit_customer_path(current_user) if current_user.type == 'Customer' %> <br>
-<%= link_to 'edit profile', edit_admin_path(current_user) if current_user.type == 'Admin' %> <br>
-<%= button_to 'Delete all accounts and profiles', customer_path(current_user), method: :delete %>
+<!-- <h2>Welcome, <%= current_user.full_name %></h2> -->
+<div class="jumbotron text-center">
+<h1>Combined Balance of all Accounts</h1>
+<h2><%= number_to_currency(current_user.net_worth) %></h2>
