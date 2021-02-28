@@ -1,32 +1,39 @@
-<h1>stats</h1>
+<h1 class="jumbotron text-center">Financial Statistics</h1>
 
+<div class="text-center">
+<h3 class="jumbotron">Financial Product Count</h3>
 <% FinancialProduct.acct_type_count.each do |k, v| %>
 
     <%= display_sums_of_products(k, v) %>
 
 <% end %>
+</div>
 
-<h3>Full Service Customers:</h3>
-
+<div class="row">
+<div class="col-4">
+<h3 class="jumbotron">Full Service Customers</h3>
 <% Customer.full_service.each do |customer| %>
 
     <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
-
-<h3>Standard Service Customers</h3>
+</div>
+<div class="col-4">
+<h3 class="jumbotron">Standard Service Customers</h3>
 
 <% Customer.standard_service.each do |customer| %>
 
     <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
-
-<h3>Self Service Customers</h3>
+</div>
+<div class="col-4">
+<h3 class="jumbotron">Self Service Customers</h3>
 
 <% Customer.self_service.each do |customer| %>
 
     <%= display_net_worth_of_customer(customer) %>
 
 <% end %>
-
+</div>
+</div>

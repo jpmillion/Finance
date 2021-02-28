@@ -1,18 +1,24 @@
-<h1>edit</h1>
+<% if @position.type == 'Cash' %>
+  <h1 class="jumbotron text-center">Deposit/Withdrawl</h1>
+<% else %>
+  <h1 class="jumbotron text-center">Add/Reduce</h1>
+<% end %>
 
-
+<div class="text-center">
 <%= form_with model: @position do |f| %>
 
     <% if @position.type == 'Cash' %>
-        <p>Select type of transaction:</p>
-        <%= select_tag(:transaction, options_for_select([["Deposit", "Deposit"], ["Withdrawl", "Withdrawl"]])) %> <br>
-        <%= f.number_field :value, value: 0, step: :any, min: 0 %> <br>
+        <h2>Select type of transaction:</h2><br>
+        <%= select_tag(:transaction, options_for_select([["Deposit", "Deposit"], ["Withdrawl", "Withdrawl"]])) %> <br><br>
+        <%= f.number_field :value, value: 0, step: :any, min: 0 %> <br><br>
     <% else %>
-        <p>You currently have <%= @position.shares %> share(s) of <%= @position.symbol %></p>
-        <p>Would you like to add to or reduce your position </p>
-        <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %> <br>
-        <%= f.number_field :shares, value: 0, min: 0 %> <%= f.label :shares %> <br> <br>
+        <h2>You currently have <%= @position.shares %> share(s) of <%= @position.symbol %></h2>
+        <h5>Would you like to add to or reduce your position </h5><br>
+        <%= select_tag(:transaction, options_for_select([["Add", "Add"], ["Reduce", "Reduce"]])) %> <br><br><br>
+        <h5><%= f.label :shares %></h5>
+        <%= f.number_field :shares, value: 0, min: 0 %> <br> <br>
     <% end %>
 
-    <%= f.submit %> <br>
+    <%= f.submit class: "btn btn-primary" %> <br>
 <% end %>
+</div>

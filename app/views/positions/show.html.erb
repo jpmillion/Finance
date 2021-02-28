@@ -1,9 +1,8 @@
-<h1>Position</h1>
 
 
-<%= render partial: "equity", locals: { equity: @position } if @position.type == 'Equity' %>
-
-<%= render partial: "cash", locals: { cash: @position } if @position.type == 'Cash' %>
-
-<%= link_to 'Back to Your Positions', user_account_equities_path(@position.user_account) %>
-<%= link_to 'Back to Your Account', user_account_path(@position.user_account) %> <br>
+<% if @position.type == 'Equity' %>
+  <%= render partial: "equity", locals: { equity: @position } %>
+<% else %>
+    <%= render partial: "cash", locals: { cash: @position } %>
+<% end %>
+<br><br><br><br><%= link_to 'Back to Your Positions', user_account_equities_path(@position.user_account) %>

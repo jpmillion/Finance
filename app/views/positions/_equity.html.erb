@@ -1,9 +1,25 @@
 
-<%= equity.company_name(equity.symbol) %> <br>
-<%= equity.symbol %> <br>
-<%= equity.shares %> shares <br>
-<%= number_to_currency(equity.total_value(equity.symbol)) %> <br>
+<div class="jumbotron text-center">
+<h1><%= equity.company_name(equity.symbol) %></h1>
+<h4><%= link_to 'add or reduce position', edit_equity_path(equity) %></h4> <br>
+<%= button_to 'Close Position', equity_path(equity), class: "btn btn-primary",method: :delete %>
+</div> <br>
+<table class="table table-borderless text-center">
+<thead>
+<tr>
+<th><h2>Equity Symbol</h2></th>
+<th><h2>Shares Owned</h2></th>
+<th><h2>Current Value</h2></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><%= equity.symbol %></td> 
+<td><%= equity.shares %></td>
+<td><%= number_to_currency(equity.total_value(equity.symbol)) %></td>
+</tr>
+</tbody>
+</table>
 <br>
 
-<%= link_to 'add or reduce position', edit_equity_path(equity) %> <br><br>
-<%= button_to 'Close Position', equity_path(equity), method: :delete %> <br>
+ 

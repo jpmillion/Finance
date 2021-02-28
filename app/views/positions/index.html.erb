@@ -1,7 +1,8 @@
 <div class="jumbotron text-center">
 <h1><%= @user_account.financial_product.name %> Positions</h1>
-<%= link_to 'User account home', @user_account %> <br><br><br>
-
+<%= link_to 'User account home', @user_account %> <br><br>
+</div><br>
+<div class="text-center">
 <% @positions.each do |position| %>
 
     <% if position.type == 'Cash' %>

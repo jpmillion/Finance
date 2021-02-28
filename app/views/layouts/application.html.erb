@@ -13,14 +13,21 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
       <ul class="navbar-nav">
         <% if session[:user_id] %>
-          <li class="nav-item active"><%= link_to 'Home', customer_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item active"><%= link_to 'Open New Account', new_customer_user_account_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item active"><%= link_to 'View Your Accounts', customer_user_accounts_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item active"><%= link_to 'Edit Profile', edit_customer_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item active"><%= button_to 'Close all Accounts and Delete Profile', customer_path(current_user), class: "nav-link btn", method: :delete %></li>
-          <li class="nav-item active"><%= button_to 'Log Out', session_path(current_user), class: "nav-link btn", method: :delete %> </li>
+          <% if current_user.type == 'Customer' %>
+            <li class="nav-item active"><%= link_to 'Home', customer_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'Open New Account', new_customer_user_account_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'View Your Accounts', customer_user_accounts_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'Edit Profile', edit_customer_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= button_to 'Close all Accounts and Delete Profile', customer_path(current_user), class: "nav-link btn", method: :delete %></li>
+          <% else %>
+            <li class="nav-item active"><%= link_to 'Home', admins_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'Edit Profile', edit_admin_path(current_user), class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'Financial Statistics', financial_stats_admins_path, class: "nav-link" %></li>
+            <li class="nav-item active"><%= button_to 'Delete Account', admins_path(current_user), class: "nav-link btn", method: :delete %></li>
+          <% end %>
+            <li class="nav-item active"><%= button_to 'Log Out', session_path(current_user), class: "nav-link btn", method: :delete %> </li>
         <% else %>
-          <li class="nav-item active"><%= link_to 'Log in with Github', '/auth/github', class: "nav-link", method: :post %></li>
+          <li class="nav-item active"><%= button_to 'Log in with Github', '/auth/github', class: "nav-link btn", method: :post %></li>
           <li class="nav-item active"><%= link_to 'Log In', login_path, class: "nav-link" %></li>
           <li class="nav-item active"><%= link_to 'Sign Up', new_user_path, class: "nav-link"  %></li>
         <% end %>
