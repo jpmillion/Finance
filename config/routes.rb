@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   resources :cash, controller: :positions, type: 'Cash', only: [:show, :edit, :update]
 
-  resources :financial_products
+  resources :financial_products, only: :index do
+    get 'acct_type_count', on: :collection
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

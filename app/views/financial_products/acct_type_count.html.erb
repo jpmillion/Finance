@@ -1,0 +1,8 @@
+<div class="text-center">
+<h3 class="jumbotron">Financial Product Count</h3>
+<% FinancialProduct.acct_type_count.each do |k, v| %>
+
+    <%= display_sums_of_products(k, v) %>
+
+<% end %>
+</div>
