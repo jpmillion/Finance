@@ -2,10 +2,10 @@
 
 <%= form_with model: @user, url: sessions_path do |f| %>
     <div class="text-center">
-    <%= f.label :username %> <br>
-    <%= f.text_field :username %> <br><br>
-    <%= f.label :password %> <br>
-    <%= f.password_field :password %> <br><br>
-    <%= f.submit 'Log In', class: "btn btn-primary" %>
+        <%= f.label :username %> <br>
+        <%= f.text_field :username %> <br><br>
+        <%= f.label :password %> <br>
+        <%= f.password_field :password %> <br><br>
+        <%= f.submit 'Log In', class: "btn btn-primary" %>
     </div>
 <% end %>
