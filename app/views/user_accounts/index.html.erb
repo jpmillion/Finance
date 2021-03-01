@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-<h1>Your Accounts</h1><br>
+    <h1>Your Accounts</h1><br>
 </div><br>
 
 <% @user_accounts.each do |acct| %>
@@ -7,4 +7,3 @@
     <h2 class="text-center"><%= link_to acct.financial_product.name, user_account_path(acct) %></h2><br><br>
 
 <% end %>
-</div>
