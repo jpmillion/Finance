@@ -1,39 +1,33 @@
 <h1 class="jumbotron text-center">Financial Statistics</h1>
 
-<div class="text-center">
-<h3 class="jumbotron">Financial Product Count</h3>
-<% FinancialProduct.acct_type_count.each do |k, v| %>
-
-    <%= display_sums_of_products(k, v) %>
-
-<% end %>
-</div>
-
 <div class="row">
-<div class="col-4">
-<h3 class="jumbotron">Full Service Customers</h3>
-<% Customer.full_service.each do |customer| %>
+    <div class="col-4">
+        <h3 class="jumbotron">Full Service Customers</h3>
 
-    <%= display_net_worth_of_customer(customer) %>
+        <% Customer.full_service.each do |customer| %>
 
-<% end %>
-</div>
-<div class="col-4">
-<h3 class="jumbotron">Standard Service Customers</h3>
+            <%= display_net_worth_of_customer(customer) %>
 
-<% Customer.standard_service.each do |customer| %>
+        <% end %>
+    </div>
 
-    <%= display_net_worth_of_customer(customer) %>
+    <div class="col-4">
+        <h3 class="jumbotron">Standard Service Customers</h3>
 
-<% end %>
-</div>
-<div class="col-4">
-<h3 class="jumbotron">Self Service Customers</h3>
+        <% Customer.standard_service.each do |customer| %>
 
-<% Customer.self_service.each do |customer| %>
+            <%= display_net_worth_of_customer(customer) %>
 
-    <%= display_net_worth_of_customer(customer) %>
+        <% end %>
+    </div>
+    
+    <div class="col-4">
+        <h3 class="jumbotron">Self Service Customers</h3>
 
-<% end %>
-</div>
+        <% Customer.self_service.each do |customer| %>
+
+            <%= display_net_worth_of_customer(customer) %>
+
+        <% end %>
+    </div>
 </div>
