@@ -1,13 +1,21 @@
-
-
 <h1 class="jumbotron text-center">Financial Products</h1>
+
 <div class="container-fluid">
+    
     <div class="row">
+        
         <% @products.each do |product| %>
+            
             <div class="col-6 jumbotron">    
+                
                 <h3 class="text-center"><%= product.name %></h3> <br>
+                
                 <p><%= product.description %></p>
+            
             </div> <br><br>
+        
         <% end %>
+    
     </div>
+
 </div>
