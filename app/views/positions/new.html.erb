@@ -1,19 +1,19 @@
 <%= render partial: 'error_messages/full_messages', locals: { model: @equity } %>
 
 <h1 class="jumbotron text-center">Open New Equity Position</h1>
-<div class="text-center">
-<%= form_with model: [@user_account, @equity] do |f| %>
+    <div class="text-center">
+        <%= form_with model: [@user_account, @equity] do |f| %>
 
-    <%= f.hidden_field :type, value: 'Equity' %>
-    <h2><%= f.label :symbol %></h2>
-    <%= f.text_field :symbol %> <br><br><br>
-    <h2><%= f.label :shares %></h2>
-    <%= f.number_field :shares, value: 0, min: 0, step: 1 %> <br><br><br>
-    <%= f.submit class: "btn btn-primary" %> <br>
-    
+            <%= f.hidden_field :type, value: 'Equity' %>
+            <h2><%= f.label :symbol %></h2>
+            <%= f.text_field :symbol %> <br><br><br>
+            <h2><%= f.label :shares %></h2>
+            <%= f.number_field :shares, value: 0, min: 0, step: 1 %> <br><br><br>
+            <%= f.submit class: "btn btn-primary" %> <br>
 
-<% end %>
-<br>
-</div>
+
+        <% end %>
+        <br>
+    </div>
 <%= link_to 'Back to Your Positions', user_account_equities_path(@user_account) %>
 
