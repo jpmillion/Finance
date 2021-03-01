@@ -63,9 +63,8 @@ class PositionsController < ApplicationController
     end
 
     def redirect_if_symbol_not_found(symbol)
-        if Equity.lookup(symbol).class == IEX::Errors::SymbolNotFoundError
-            redirect_to new_user_account_equity_path(@user_account), alert: "Symbol #{symbol} not found"
-        end
+        equity = Equity.lookup(symbol)
+        redirect_to new_user_account_equity_path(@user_account), alert: "Symbol #{symbol} not found" if !equity
     end
 
     def redirect_if_position_exist(symbol)
