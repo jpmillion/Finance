@@ -1,14 +1,15 @@
 <div class="jumbotron text-center">
-<h1><%= @user_account.financial_product.name %></h1><br>
+    <h1><%= @user_account.financial_product.name %></h1><br>
 
-<h2>acct. number 0000<%= @user_account.id %></h2><br>
+    <h2>acct. number 0000<%= @user_account.id %></h2><br>
 </div>
+
 <div class="text-center">
-<h2>Current Balance: <%= number_to_currency(@user_account.balance) %></h2><br>
+    <h2>Current Balance: <%= number_to_currency(@user_account.balance) %></h2><br>
 
 
-<h3><%= link_to 'View Account Positions', user_account_equities_path(@user_account) %></h3>
-<br>
-<%= button_to 'close account', user_account_path(@user_account), class: "btn btn-primary", method: :delete %>
+    <h3><%= link_to 'View Account Positions', user_account_equities_path(@user_account) %></h3>
+    <br>
+    <%= button_to 'close account', user_account_path(@user_account), class: "btn btn-primary", method: :delete %>
 
 </div>
