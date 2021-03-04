@@ -23,6 +23,7 @@
             <li class="nav-item active"><%= link_to 'Home', admins_path(current_user), class: "nav-link" %></li>
             <li class="nav-item active"><%= link_to 'Edit Profile', edit_admin_path(current_user), class: "nav-link" %></li>
             <li class="nav-item active"><%= link_to 'Financial Statistics', financial_stats_admins_path, class: "nav-link" %></li>
+            <li class="nav-item active"><%= link_to 'Acct Type Count', acct_type_count_financial_products_path, class: "nav-link" %></li>
             <li class="nav-item active"><%= button_to 'Delete Account', admins_path(current_user), class: "nav-link btn", method: :delete %></li>
           <% end %>
             <li class="nav-item active"><%= button_to 'Log Out', session_path(current_user), class: "nav-link btn", method: :delete %> </li>
