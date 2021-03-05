@@ -1,5 +1,6 @@
 class Equity < Position
     validates :symbol, presence: true
+    validates :symbol, uniqueness: { scope: :user_account }
     validates :shares, numericality: { greater_than_or_equal_to:  0, only_integer: true }
 
     before_validation do
@@ -16,7 +17,7 @@ class Equity < Position
     end
 
     def self.lookup(symbol)
-        IEX::Api::Client.new(
+        res = IEX::Api::Client.new(
             publishable_token: ENV['IEX_API_PUBLISHABLE_TOKEN'],
             secret_token: ENV['IEX_API_SECRET_TOKEN'],
             endpoint: 'https://cloud.iexapis.com/v1'
