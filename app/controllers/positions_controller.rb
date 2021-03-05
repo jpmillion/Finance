@@ -16,7 +16,7 @@ class PositionsController < ApplicationController
     def create
         symbol, shares = params[:equity][:symbol].upcase, params[:equity][:shares].to_i
         @user_account = UserAccount.find_by(id: params[:user_account_id])
-        create_position_or_redirect_if_purchase_not_valid(symbol, shares)   
+        return create_position_or_redirect_if_purchase_not_valid(symbol, shares)   
     end
 
     def show
@@ -63,19 +63,16 @@ class PositionsController < ApplicationController
     end
 
     def redirect_if_symbol_not_found(symbol)
-        equity = Equity.lookup(symbol)
-        redirect_to new_user_account_equity_path(@user_account), alert: "Symbol #{symbol} not found" if !equity
-    end
-
-    def redirect_if_position_exist(symbol)
-        if @user_account.positions.exists?(symbol: symbol)
-            redirect_to new_user_account_equity_path(@user_account), alert: "You already have a position in #{symbol}"
+        begin
+            equity = Equity.lookup(symbol)
+        rescue IEX::Errors::SymbolNotFoundError
+            "This symbol not found"
         end
     end
 
     def create_position_or_redirect_if_purchase_not_valid(symbol, shares)
-        redirect_if_position_exist(symbol)
-        redirect_if_symbol_not_found(symbol)
+        res = redirect_if_symbol_not_found(symbol)
+        return (redirect_to new_user_account_equity_path(@user_account), alert: res) if res.is_a?(String)
         @equity = @user_account.positions.build(equity_params)
         if @equity.save
             if @equity.affordable?(symbol, shares)
