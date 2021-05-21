@@ -1,4 +1,4 @@
-    Finance is an application based on a mock brokerage firm.  When a user
+Finance is an application based on a mock brokerage firm.  When a user
 visits the home page all the availble financial products are listed.  They are then
 able to sign up or login through github.  There are two types of
 users(customers or administrators).
