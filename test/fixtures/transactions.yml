@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  shares: 1
-  value: 1.5
+  amount: MyString
 
 two:
   name: MyString
-  shares: 1
-  value: 1.5
+  amount: MyString

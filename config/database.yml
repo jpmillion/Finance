@@ -58,7 +58,7 @@ development:
   #username: jpmillion22
 
   # The password associated with the postgres role (username).
-  password: 7777777
+  password: <%= ENV['POSTGRESQL'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -108,4 +108,4 @@ production:
   <<: *default
   database: Finance_production
   username: jpmillion
-  password: 7777777
+  password: <%= ENV['POSTGRESQL'] %>
