@@ -12,7 +12,7 @@
         <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br><br>
         <h2>Equities</h2>
         <% equities.each do |equity| %>
-        <%= link_to equity.symbol, equity_path(equity) %> <br>
+            <%= link_to equity.symbol, equity_path(equity) %> <br>
         <% end %>
 
 
