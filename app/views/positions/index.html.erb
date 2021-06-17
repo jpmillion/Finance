@@ -4,20 +4,18 @@
 </div><br>
 
 <div class="text-center">
-    <% @positions.each do |position| %>
+    <% cash = @positions.find {|position| position.type == 'Cash'} %>
+    <% equities = @positions.filter {|position| position.type == 'Equity'} %>
 
-        <% if position.type == 'Cash' %>
-            <h2>Cash</h2>
-            <%= position.type %> balance:
-            <%= number_to_currency(position.value) %> <br> 
-            <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br><br>
-            <h2>Equities</h2>
-        <% else %>
-            <%= link_to position.symbol, equity_path(position) if position.type == 'Equity' %> <br>
-        <% end %>
+        <h2>Cash</h2>
+        Cash balance: <%= number_to_currency(cash.value) %> <br> 
+        <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br><br>
+        <h2>Equities</h2>
+        <% equities.each do |equity| %>
+        <%= link_to equity.symbol, equity_path(equity) %> <br>
 
 
-    <% end %> <br><br>
+ <br><br>
     <%= link_to 'create new equity position', new_user_account_equity_path(@user_account) %>
 
 </div>
