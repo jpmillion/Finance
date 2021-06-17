@@ -9,7 +9,7 @@
 
         <h2>Cash</h2>
         Cash balance: <%= number_to_currency(cash.value) %> <br> 
-        <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(position) %> <br><br>
+        <%= link_to 'make a cash deposit/withdrawl', edit_cash_path(cash) %> <br><br>
         <h2>Equities</h2>
         <% equities.each do |equity| %>
             <%= link_to equity.symbol, equity_path(equity) %> <br>
