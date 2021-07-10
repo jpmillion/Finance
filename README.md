@@ -1,4 +1,18 @@
-Finance is an application based on a mock brokerage firm.  When a user
+Finance is an application based on a mock brokerage firm.
+
+[<img src="Finance - Google Chrome 7_9_2021 10_42_24 PM.png" width="50%">](https://www.loom.com/share/ae0cda23948b4d778bfc5806f752f14a)
+
+After forking and cloning this repository run
+```
+bundle install
+```
+and then
+``` 
+rails s
+```
+on your command line to start the application.
+
+When a user
 visits the home page all the availble financial products are listed.  They are then
 able to sign up or login through github.  There are two types of
 users(customers or administrators).
